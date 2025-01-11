@@ -1,29 +1,48 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "talp1/laravel-registry",
+    "description": "Easy registry management for Laravel",
     "keywords": [
-        ":vendor_name",
         "laravel",
-        ":package_slug"
+        "laravel-registry",
+        "registry",
+        "contact",
+        "address",
+        "phone number",
+        "social network"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/talpx1/laravel-registry",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Simone Cerruti",
+            "email": "hello@simonecerruti.com",
+            "homepage": "https://simonecerruti.com",
             "role": "Developer"
         }
     ],
+    "support": {
+        "email": "hello@simonecerruti.com",
+        "issues": "https://github.com/talpx1/laravel-registry/issues",
+        "source": "https://github.com/talpx1/laravel-registry",
+        "docs": "https://github.com/talpx1/laravel-registry/docs/README.md",
+        "security": "https://github.com/talpx1/laravel-registry/security/policy"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://buymeacoffee.com/talp1"
+        }
+    ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.1",
+        "illuminate/contracts": "^10.0||^11.0",
         "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
         "nunomaduro/collision": "^8.1.1||^7.10.0",
-        "larastan/larastan": "^2.9",
         "orchestra/testbench": "^9.0.0||^8.22.0",
         "pestphp/pest": "^3.0",
         "pestphp/pest-plugin-arch": "^3.0",
@@ -31,17 +50,17 @@
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-phpunit": "^1.3",
-        "spatie/laravel-ray": "^1.35"
+        "thecodingmachine/phpstan-safe-rule": "^1.2"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Talp1\\LaravelRegistry\\": "src/",
+            "Talp1\\LaravelRegistry\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Talp1\\LaravelRegistry\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +82,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Talp1\\LaravelRegistry\\LaravelRegistryServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelRegistry": "Talp1\\LaravelRegistry\\Facades\\LaravelRegistry"
             }
         }
     },

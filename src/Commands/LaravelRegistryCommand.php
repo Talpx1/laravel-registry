@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Talp1\LaravelRegistry\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelRegistryCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-registry';
 
     public $description = 'My command';
 
