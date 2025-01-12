@@ -32,5 +32,7 @@ return [
     // This package already provides some enums, but you can use one of your own specifying it here
     'enums' => [
         'countries' => \Talp1\LaravelRegistry\Enums\Countries::class,
+        'languages' => \Talp1\LaravelRegistry\Enums\Languages::class,
+        'continents' => \Talp1\LaravelRegistry\Enums\Continents::class,
     ],
 ];
