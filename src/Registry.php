@@ -2,4 +2,4 @@
 
 namespace Talp1\LaravelRegistry;
 
-class LaravelRegistry {}
+class Registry {}
