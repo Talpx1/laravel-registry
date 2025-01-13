@@ -7,7 +7,14 @@ use Talp1\LaravelRegistry\Enums\Contracts\HasLabels;
 use Talp1\LaravelRegistry\Enums\Traits\CanBeCollected as CanBeCollectedTrait;
 use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
 
-/** @implements CanBeCollected<string> */
+/**
+ * Enum of all the countries in the world and their ISO 3166-1 info ({@link https://en.wikipedia.org/wiki/ISO_3166-1}).
+ *
+ * Note that the country list or its bindings may be incomplete or not up-to-date.
+ * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
+ *
+ * @implements CanBeCollected<string>
+ */
 enum Countries: string implements CanBeCollected, HasLabels {
     /** @use CanBeCollectedTrait<string> */
     use CanBeCollectedTrait, ConvertsValueToLabel;
@@ -209,6 +216,12 @@ enum Countries: string implements CanBeCollected, HasLabels {
     case ZAMBIA = 'zambia';
     case ZIMBABWE = 'zimbabwe';
 
+    /**
+     * Returns the ISO 3166-1 alpha-2 code of the country.
+     * Eg. `IT` for Italy
+     *
+     * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+     */
     public function iso3166Alpha2Code(): string {
         return match ($this) {
             self::AFGHANISTAN => 'AF',
@@ -410,6 +423,12 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Returns the ISO 3166-1 alpha-3 code of the country.
+     * Eg. `ITA` for Italy
+     *
+     * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+     */
     public function iso3166Alpha3Code(): string {
         return match ($this) {
             self::AFGHANISTAN => 'AFG',
@@ -611,6 +630,14 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Returns the ISO 3166-1 numeric code of the country.
+     * Eg. `380` for Italy
+     *
+     * It returns a string because some codes are prefixed with `0`
+     *
+     * @link https://en.wikipedia.org/wiki/ISO_3166-1_numeric
+     */
     public function iso3166NumericCode(): string {
         return match ($this) {
             self::AFGHANISTAN => '004',
@@ -812,6 +839,14 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Returns the national phone prefix of the country.
+     * Eg. `39` for Italy
+     *
+     * Note that the `+` sign is not included.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_country_calling_codes
+     */
     public function phonePrefix(): string {
         return match ($this) {
             self::AFGHANISTAN => '93',
@@ -1013,12 +1048,22 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
-    /** @return string[] */
+    /**
+     * Returns an array of the phone prefixes of all countries.
+     *
+     * @return string[]
+     */
     public static function allPhonePrefixes(): array {
         return array_map(fn (self $country) => $country->phonePrefix(), self::cases());
     }
 
-    /** @return Languages[] */
+    /**
+     * Returns the official languages of the country as instances of the {@see \Talp1\LaravelRegistry\Enums\Languages} enum.
+     *
+     * Note that this method returns an array because some countries have more than one official language.
+     *
+     * @return Languages[]
+     */
     public function officialLanguages(): array {
         return match ($this) {
             self::AFGHANISTAN => [Languages::PASHTO, Languages::PERSIAN],
@@ -1220,6 +1265,9 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Return the continent of the country as an instance of the {@see \Talp1\LaravelRegistry\Enums\Continents} enums.
+     */
     public function continent(): Continents {
         return match ($this) {
             self::AFGHANISTAN => Continents::ASIA,
@@ -1421,5 +1469,211 @@ enum Countries: string implements CanBeCollected, HasLabels {
         };
     }
 
-    // TODO: match for official currencies -> need currencies enum
+    /**
+     * Returns the official currencies used in the country as instances of the {@see \Talp1\LaravelRegistry\Enums\Currencies} enum.
+     *
+     * Note that this method returns an array because some countries have more than one official currency.
+     *
+     * @return Currencies[]
+     */
+    public function officialCurrencies(): array {
+        return match ($this) {
+            self::AFGHANISTAN => [Currencies::AFGHANI],
+            self::ALBANIA => [Currencies::ALBANIAN_LEK],
+            self::ALGERIA => [Currencies::ALGERIAN_DINAR],
+            self::ANDORRA => [Currencies::EURO],
+            self::ANGOLA => [Currencies::ANGOLAN_KWANZA],
+            self::ANTIGUA_AND_BARBUDA => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::ARGENTINA => [Currencies::ARGENTINE_PESO],
+            self::ARMENIA => [Currencies::ARMENIAN_DRAM],
+            self::AUSTRALIA => [Currencies::AUSTRALIAN_DOLLAR],
+            self::AUSTRIA => [Currencies::EURO],
+            self::AZERBAIJAN => [Currencies::AZERBAIJANI_MANAT],
+            self::BAHAMAS => [Currencies::BAHAMIAN_DOLLAR],
+            self::BAHRAIN => [Currencies::BAHRAINI_DINAR],
+            self::BANGLADESH => [Currencies::BANGLADESHI_TAKA],
+            self::BARBADOS => [Currencies::BARBADIAN_DOLLAR],
+            self::BELARUS => [Currencies::BELARUSIAN_RUBLE],
+            self::BELGIUM => [Currencies::EURO],
+            self::BELIZE => [Currencies::BELIZE_DOLLAR],
+            self::BENIN => [Currencies::CFA_FRANC_BCEAO],
+            self::BHUTAN => [Currencies::BHUTANESE_NGULTRUM],
+            self::BOLIVIA => [Currencies::BOLIVIAN_BOLIVIANO],
+            self::BOSNIA_AND_HERZEGOVINA => [Currencies::BOSNIA_AND_HERZEGOVINA_CONVERTIBLE_MARK],
+            self::BOTSWANA => [Currencies::BOTSWANA_PULA],
+            self::BRAZIL => [Currencies::BRAZILIAN_REAL],
+            self::BRUNEI => [Currencies::BRUNEIAN_DOLLAR],
+            self::BULGARIA => [Currencies::BULGARIAN_LEV],
+            self::BURKINA_FASO => [Currencies::CFA_FRANC_BCEAO],
+            self::BURUNDI => [Currencies::BURUNDIAN_FRANC],
+            self::CABO_VERDE => [Currencies::CABO_VERDE_ESCUDO],
+            self::CAMBODIA => [Currencies::CAMBODIAN_RIEL],
+            self::CAMEROON => [Currencies::CFA_FRANC_BEAC],
+            self::CANADA => [Currencies::CANADIAN_DOLLAR],
+            self::CENTRAL_AFRICAN_REPUBLIC => [Currencies::CFA_FRANC_BEAC],
+            self::CHAD => [Currencies::CFA_FRANC_BEAC],
+            self::CHILE => [Currencies::CHILEAN_PESO],
+            self::CHINA => [Currencies::CHINESE_YUAN],
+            self::COLOMBIA => [Currencies::COLOMBIAN_PESO],
+            self::COMOROS => [Currencies::COMORIAN_FRANC],
+            self::CONGO_DEMOCRATIC_REPUBLIC => [Currencies::CONGOLESE_FRANC],
+            self::CONGO_REPUBLIC => [Currencies::CFA_FRANC_BEAC],
+            self::COSTA_RICA => [Currencies::COSTA_RICAN_COLON],
+            self::CROATIA => [Currencies::CROATIAN_KUNA],
+            self::CUBA => [Currencies::CUBAN_PESO],
+            self::CYPRUS => [Currencies::EURO],
+            self::CZECH_REPUBLIC => [Currencies::CZECH_KORUNA],
+            self::DENMARK => [Currencies::DANISH_KRONE],
+            self::DJIBOUTI => [Currencies::DJIBOUTIAN_FRANC],
+            self::DOMINICA => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::DOMINICAN_REPUBLIC => [Currencies::DOMINICAN_PESO],
+            self::ECUADOR => [Currencies::US_DOLLAR],
+            self::EGYPT => [Currencies::EGYPTIAN_POUND],
+            self::EL_SALVADOR => [Currencies::US_DOLLAR],
+            self::EQUATORIAL_GUINEA => [Currencies::CFA_FRANC_BEAC],
+            self::ERITREA => [Currencies::ERITREAN_NAKFA],
+            self::ESTONIA => [Currencies::EURO],
+            self::ESWATINI => [Currencies::ESWATINI_LILANGENI],
+            self::ETHIOPIA => [Currencies::ETHIOPIAN_BIRR],
+            self::FIJI => [Currencies::FIJIAN_DOLLAR],
+            self::FINLAND => [Currencies::EURO],
+            self::FRANCE => [Currencies::EURO],
+            self::GABON => [Currencies::CFA_FRANC_BEAC],
+            self::GAMBIA => [Currencies::GAMBIAN_DALASI],
+            self::GEORGIA => [Currencies::GEORGIAN_LARI],
+            self::GERMANY => [Currencies::EURO],
+            self::GHANA => [Currencies::GHANAIAN_CEDI],
+            self::GREECE => [Currencies::EURO],
+            self::GRENADA => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::GUATEMALA => [Currencies::GUATEMALAN_QUETZAL],
+            self::GUINEA => [Currencies::GUINEAN_FRANC],
+            self::GUINEA_BISSAU => [Currencies::CFA_FRANC_BCEAO],
+            self::GUYANA => [Currencies::GUYANESE_DOLLAR],
+            self::HAITI => [Currencies::HAITIAN_GOURDE],
+            self::HONDURAS => [Currencies::HONDURAN_LEMPIRA],
+            self::HUNGARY => [Currencies::HUNGARIAN_FORINT],
+            self::ICELAND => [Currencies::ICELANDIC_KRONA],
+            self::INDIA => [Currencies::INDIAN_RUPEE],
+            self::INDONESIA => [Currencies::INDONESIAN_RUPIAH],
+            self::IRAN => [Currencies::IRANIAN_RIAL],
+            self::IRAQ => [Currencies::IRAQI_DINAR],
+            self::IRELAND => [Currencies::EURO],
+            self::ISRAEL => [Currencies::ISRAELI_SHEKEL],
+            self::ITALY => [Currencies::EURO],
+            self::JAMAICA => [Currencies::JAMAICAN_DOLLAR],
+            self::JAPAN => [Currencies::JAPANESE_YEN],
+            self::JORDAN => [Currencies::JORDANIAN_DINAR],
+            self::KAZAKHSTAN => [Currencies::KAZAKHSTANI_TENGE],
+            self::KENYA => [Currencies::KENYAN_SHILLING],
+            self::KIRIBATI => [Currencies::KIRIBATI_DOLLAR],
+            self::KOREA_NORTH => [Currencies::NORTH_KOREAN_WON],
+            self::KOREA_SOUTH => [Currencies::SOUTH_KOREAN_WON],
+            self::KOSOVO => [Currencies::EURO],
+            self::KUWAIT => [Currencies::KUWAITI_DINAR],
+            self::KYRGYZSTAN => [Currencies::KYRGYZSTANI_SOM],
+            self::LAOS => [Currencies::LAO_KIP],
+            self::LATVIA => [Currencies::EURO],
+            self::LEBANON => [Currencies::LEBANESE_POUND],
+            self::LESOTHO => [Currencies::LESOTHO_LOTI],
+            self::LIBERIA => [Currencies::LIBERIAN_DOLLAR],
+            self::LIBYA => [Currencies::LIBYAN_DINAR],
+            self::LIECHTENSTEIN => [Currencies::SWISS_FRANC],
+            self::LITHUANIA => [Currencies::EURO],
+            self::LUXEMBOURG => [Currencies::EURO],
+            self::MADAGASCAR => [Currencies::MALAGASY_ARIARY],
+            self::MALAWI => [Currencies::MALAWIAN_KWACHA],
+            self::MALAYSIA => [Currencies::MALAYSIAN_RINGGIT],
+            self::MALDIVES => [Currencies::MALDIVIAN_RUFIYAA],
+            self::MALI => [Currencies::CFA_FRANC_BCEAO],
+            self::MALTA => [Currencies::EURO],
+            self::MARSHALL_ISLANDS => [Currencies::US_DOLLAR],
+            self::MAURITANIA => [Currencies::MAURITANIAN_OUGUIYA],
+            self::MAURITIUS => [Currencies::MAURITIAN_RUPEE],
+            self::MEXICO => [Currencies::MEXICAN_PESO],
+            self::MICRONESIA => [Currencies::US_DOLLAR],
+            self::MOLDOVA => [Currencies::MOLDOVAN_LEU],
+            self::MONACO => [Currencies::EURO],
+            self::MONGOLIA => [Currencies::MONGOLIAN_TUGRIK],
+            self::MONTENEGRO => [Currencies::EURO],
+            self::MOROCCO => [Currencies::MOROCCAN_DIRHAM],
+            self::MOZAMBIQUE => [Currencies::MOZAMBICAN_METICAL],
+            self::MYANMAR => [Currencies::MYANMA_KYAT],
+            self::NAMIBIA => [Currencies::NAMIBIAN_DOLLAR],
+            self::NAURU => [Currencies::AUSTRALIAN_DOLLAR],
+            self::NEPAL => [Currencies::NEPALESE_RUPEE],
+            self::NETHERLANDS => [Currencies::EURO],
+            self::NEW_ZEALAND => [Currencies::NEW_ZEALAND_DOLLAR],
+            self::NICARAGUA => [Currencies::NICARAGUAN_CORDOBA],
+            self::NIGER => [Currencies::CFA_FRANC_BCEAO],
+            self::NIGERIA => [Currencies::NIGERIAN_NAIRA],
+            self::NORTH_MACEDONIA => [Currencies::MACEDONIAN_DENAR],
+            self::NORWAY => [Currencies::NORWEGIAN_KRONE],
+            self::OMAN => [Currencies::OMANI_RIAL],
+            self::PAKISTAN => [Currencies::PAKISTANI_RUPEE],
+            self::PALAU => [Currencies::US_DOLLAR],
+            self::PALESTINE => [Currencies::ISRAELI_SHEKEL],
+            self::PANAMA => [Currencies::PANAMANIAN_BALBOA, Currencies::US_DOLLAR],
+            self::PAPUA_NEW_GUINEA => [Currencies::PAPUA_NEW_GUINEAN_KINA],
+            self::PARAGUAY => [Currencies::PARAGUAYAN_GUARANI],
+            self::PERU => [Currencies::PERUVIAN_SOL],
+            self::PHILIPPINES => [Currencies::PHILIPPINE_PESO],
+            self::POLAND => [Currencies::POLISH_ZLOTY],
+            self::PORTUGAL => [Currencies::EURO],
+            self::QATAR => [Currencies::QATARI_RIAL],
+            self::ROMANIA => [Currencies::ROMANIAN_LEU],
+            self::RUSSIA => [Currencies::RUSSIAN_RUBLE],
+            self::RWANDA => [Currencies::RWANDAN_FRANC],
+            self::SAINT_KITTS_AND_NEVIS => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::SAINT_LUCIA => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::SAINT_VINCENT_AND_THE_GRENADINES => [Currencies::EAST_CARIBBEAN_DOLLAR],
+            self::SAMOA => [Currencies::SAMOAN_TALA],
+            self::SAN_MARINO => [Currencies::EURO],
+            self::SAO_TOME_AND_PRINCIPE => [Currencies::SAO_TOME_AND_PRINCIPE_DOBRA],
+            self::SAUDI_ARABIA => [Currencies::SAUDI_RIYAL],
+            self::SENEGAL => [Currencies::CFA_FRANC_BCEAO],
+            self::SERBIA => [Currencies::SERBIAN_DINAR],
+            self::SEYCHELLES => [Currencies::SEYCHELLOIS_RUPEE],
+            self::SIERRA_LEONE => [Currencies::SIERRA_LEONEAN_LEONE],
+            self::SINGAPORE => [Currencies::SINGAPORE_DOLLAR],
+            self::SLOVAKIA => [Currencies::EURO],
+            self::SLOVENIA => [Currencies::EURO],
+            self::SOLOMON_ISLANDS => [Currencies::SOLOMON_ISLANDS_DOLLAR],
+            self::SOMALIA => [Currencies::SOMALI_SHILLING],
+            self::SOUTH_AFRICA => [Currencies::SOUTH_AFRICAN_RAND],
+            self::SOUTH_SUDAN => [Currencies::SOUTH_SUDANESE_POUND],
+            self::SPAIN => [Currencies::EURO],
+            self::SRI_LANKA => [Currencies::SRI_LANKAN_RUPEE],
+            self::SUDAN => [Currencies::SUDANESE_POUND],
+            self::SURINAME => [Currencies::SURINAMESE_DOLLAR],
+            self::SWEDEN => [Currencies::SWEDISH_KRONA],
+            self::SWITZERLAND => [Currencies::SWISS_FRANC],
+            self::SYRIA => [Currencies::SYRIAN_POUND],
+            self::TAIWAN => [Currencies::NEW_TAIWAN_DOLLAR],
+            self::TAJIKISTAN => [Currencies::TAJIKISTANI_SOMONI],
+            self::TANZANIA => [Currencies::TANZANIAN_SHILLING],
+            self::THAILAND => [Currencies::THAI_BAHT],
+            self::TIMOR_LESTE => [Currencies::US_DOLLAR],
+            self::TOGO => [Currencies::CFA_FRANC_BCEAO],
+            self::TONGA => [Currencies::TONGAN_PAANGA],
+            self::TRINIDAD_AND_TOBAGO => [Currencies::TRINIDAD_AND_TOBAGO_DOLLAR],
+            self::TUNISIA => [Currencies::TUNISIAN_DINAR],
+            self::TURKEY => [Currencies::TURKISH_LIRA],
+            self::TURKMENISTAN => [Currencies::TURKMENISTANI_MANAT],
+            self::TUVALU => [Currencies::AUSTRALIAN_DOLLAR],
+            self::UGANDA => [Currencies::UGANDAN_SHILLING],
+            self::UKRAINE => [Currencies::UKRAINIAN_HRYVNIA],
+            self::UNITED_ARAB_EMIRATES => [Currencies::UAE_DIRHAM],
+            self::UNITED_KINGDOM => [Currencies::BRITISH_POUND],
+            self::UNITED_STATES => [Currencies::US_DOLLAR],
+            self::URUGUAY => [Currencies::URUGUAYAN_PESO],
+            self::UZBEKISTAN => [Currencies::UZBEKISTANI_SOM],
+            self::VANUATU => [Currencies::VANUATU_VATU],
+            self::VATICAN_CITY => [Currencies::EURO],
+            self::VENEZUELA => [Currencies::VENEZUELAN_BOLIVAR],
+            self::VIETNAM => [Currencies::VIETNAMESE_DONG],
+            self::YEMEN => [Currencies::YEMENI_RIAL],
+            self::ZAMBIA => [Currencies::ZAMBIAN_KWACHA],
+            self::ZIMBABWE => [Currencies::ZIMBABWEAN_DOLLAR],
+        };
+    }
 }

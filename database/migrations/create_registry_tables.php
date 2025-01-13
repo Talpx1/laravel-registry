@@ -23,12 +23,15 @@ return new class extends Migration {
             $table->id();
 
             $table->morphs($this->morph_names['address_owner']);
+
             $table->string('title')->nullable();
             $table->string('street');
             $table->string('civic_number');
-
-            // This column should only be populated with values from `Cities::allPostalCodes()`
             $table->string('postal_code');
+            $table->string('city');
+
+            // This column should only be populated with values from `Countries::values()`
+            $table->string('country');
 
             $table->mediumText('notes')->nullable();
 

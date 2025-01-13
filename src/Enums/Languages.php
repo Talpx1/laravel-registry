@@ -7,7 +7,14 @@ use Talp1\LaravelRegistry\Enums\Contracts\HasLabels;
 use Talp1\LaravelRegistry\Enums\Traits\CanBeCollected as CanBeCollectedTrait;
 use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
 
-/** @implements CanBeCollected<string> */
+/**
+ * Enum containing all the world spoken languages and their ISO 639 info ({@link https://en.wikipedia.org/wiki/ISO_639}).
+ *
+ * Note that the currency list or its bindings may be incomplete or not up-to-date.
+ * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
+ *
+ * @implements CanBeCollected<string>
+ */
 enum Languages: string implements CanBeCollected, HasLabels {
     /** @use CanBeCollectedTrait<string> */
     use CanBeCollectedTrait,ConvertsValueToLabel;
@@ -151,6 +158,11 @@ enum Languages: string implements CanBeCollected, HasLabels {
     case ROMANSH = 'romansh';
     case TUVALUAN = 'tuvaluan';
 
+    /**
+     * Returns the ISO 639-1 code of the language or `null` if the language has no ISO 639-1 code.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes, https://en.wikipedia.org/wiki/ISO_639-1
+     */
     public function iso6391Code(): ?string {
         return match ($this) {
             self::AFRIKAANS => 'af',
@@ -281,6 +293,11 @@ enum Languages: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Returns the ISO 639-2 code of the language or `null` if the language has no ISO 639-2 code.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes, https://en.wikipedia.org/wiki/ISO_639-2
+     */
     public function iso6392Code(): ?string {
         return match ($this) {
             self::AFRIKAANS => 'afr',
@@ -415,6 +432,11 @@ enum Languages: string implements CanBeCollected, HasLabels {
         };
     }
 
+    /**
+     * Returns the ISO 639-3 code of the language or `null` if the language has no ISO 639-3 code.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_ISO_639-3_codes, https://en.wikipedia.org/wiki/ISO_639-3
+     */
     public function iso6393Code(): ?string {
         return match ($this) {
             self::AFRIKAANS => 'afr',

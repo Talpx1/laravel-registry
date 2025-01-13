@@ -34,5 +34,6 @@ return [
         'countries' => \Talp1\LaravelRegistry\Enums\Countries::class,
         'languages' => \Talp1\LaravelRegistry\Enums\Languages::class,
         'continents' => \Talp1\LaravelRegistry\Enums\Continents::class,
+        'currencies' => \Talp1\LaravelRegistry\Enums\Currencies::class,
     ],
 ];
