@@ -10,7 +10,7 @@ use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
 /**
  * Enum containing all the world spoken languages and their ISO 639 info ({@link https://en.wikipedia.org/wiki/ISO_639}).
  *
- * Note that the currency list or its bindings may be incomplete or not up-to-date.
+ * Note that the list or its bindings may be incomplete or not up-to-date.
  * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
  *
  * @implements CanBeCollected<string>

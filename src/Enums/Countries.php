@@ -10,7 +10,7 @@ use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
 /**
  * Enum of all the countries in the world and their ISO 3166-1 info ({@link https://en.wikipedia.org/wiki/ISO_3166-1}).
  *
- * Note that the country list or its bindings may be incomplete or not up-to-date.
+ * Note that the list or its bindings may be incomplete or not up-to-date.
  * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
  *
  * @implements CanBeCollected<string>

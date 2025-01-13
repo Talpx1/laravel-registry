@@ -10,7 +10,7 @@ use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
 /**
  * Enum containing all the world currencies and their ISO 4217 info ({@link https://en.wikipedia.org/wiki/ISO_4217}).
  *
- * Note that the currency list or its bindings may be incomplete or not up-to-date.
+ * Note that the list or its bindings may be incomplete or not up-to-date.
  * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
  *
  * @implements CanBeCollected<string>
@@ -218,7 +218,7 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      *
      * Note that the returned string may contain unicode characters.
      *
-     * @see https://en.wikipedia.org/wiki/Currency_symbol, https://en.wikipedia.org/wiki/List_of_circulating_currencies
+     * @link https://en.wikipedia.org/wiki/Currency_symbol, https://en.wikipedia.org/wiki/List_of_circulating_currencies
      */
     public function symbolOrAbbreviation(): string {
         return match ($this) {
@@ -423,7 +423,7 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      *
      * The ISO 4217 code is composed of three uppercase letters.
      *
-     * @see https://en.wikipedia.org/wiki/ISO_4217
+     * @link https://en.wikipedia.org/wiki/ISO_4217
      */
     public function iso4217Code(): ?string {
         return match ($this) {
@@ -588,7 +588,7 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      *
      * The ISO 4217 number is composed of three numbers and may start with a `0`, hence why it's returned as string.
      *
-     * @see https://en.wikipedia.org/wiki/ISO_4217
+     * @link https://en.wikipedia.org/wiki/ISO_4217
      */
     public function iso4217Number(): ?string {
         return match ($this) {
@@ -753,7 +753,7 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      * Returns the number of decimal digits of the currency according to the ISO 4217 standard
      * or `null` if the currency is not included in the ISO 4217 standard.
      *
-     * @see https://en.wikipedia.org/wiki/ISO_4217
+     * @link https://en.wikipedia.org/wiki/ISO_4217
      */
     public function iso4217DecimalDigits(): ?int {
         return match ($this) {
@@ -918,7 +918,7 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      * Returns the anchor currency of the currency or `null` if the currency has no anchor currency associated.
      * The returned currency is an instance of the {@see \Talp1\LaravelRegistry\Enums\Currencies} enum.
      *
-     * @see https://en.wikipedia.org/wiki/List_of_circulating_fixed_exchange_rate_currencies
+     * @link https://en.wikipedia.org/wiki/List_of_circulating_fixed_exchange_rate_currencies
      */
     public function anchorCurrency(): ?self {
         return match ($this) {
@@ -960,5 +960,334 @@ enum Currencies: string implements CanBeCollected, HasLabels {
      */
     public function hasAnchorCurrency(): bool {
         return $this->anchorCurrency() !== null;
+    }
+
+    /**
+     * Returns the fractional unit of the currency as an instance of the {@see \Talp1\LaravelRegistry\Enums\CurrencyFractionalUnits} enum
+     * or `null` if the currency does not have a decimal representation.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_circulating_currencies
+     */
+    public function fractionalUnit(): ?CurrencyFractionalUnits {
+        return match ($this) {
+            self::AFGHANI => CurrencyFractionalUnits::PUL,
+            self::ALBANIAN_LEK => CurrencyFractionalUnits::QINDARKA,
+            self::ALGERIAN_DINAR => CurrencyFractionalUnits::CENT,
+            self::EURO => CurrencyFractionalUnits::CENT,
+            self::ANGOLAN_KWANZA => CurrencyFractionalUnits::CENT,
+            self::EAST_CARIBBEAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::ARGENTINE_PESO => CurrencyFractionalUnits::CENT,
+            self::ARMENIAN_DRAM => CurrencyFractionalUnits::LUMA,
+            self::AUSTRALIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::AZERBAIJANI_MANAT => CurrencyFractionalUnits::GAPIK,
+            self::BAHAMIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::BAHRAINI_DINAR => CurrencyFractionalUnits::FIL,
+            self::BANGLADESHI_TAKA => CurrencyFractionalUnits::PAISA,
+            self::BARBADIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::BELARUSIAN_RUBLE => CurrencyFractionalUnits::KAPIEK,
+            self::BELIZE_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::BHUTANESE_NGULTRUM => CurrencyFractionalUnits::CHETRUM,
+            self::BOLIVIAN_BOLIVIANO => CurrencyFractionalUnits::CENT,
+            self::BOSNIA_AND_HERZEGOVINA_CONVERTIBLE_MARK => CurrencyFractionalUnits::FENING,
+            self::BOTSWANA_PULA => CurrencyFractionalUnits::THEBE,
+            self::BRAZILIAN_REAL => CurrencyFractionalUnits::CENT,
+            self::BRUNEIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::BULGARIAN_LEV => CurrencyFractionalUnits::STOTINKA,
+            self::BURUNDIAN_FRANC => null,
+            self::CABO_VERDE_ESCUDO => CurrencyFractionalUnits::CENT,
+            self::CAMBODIAN_RIEL => CurrencyFractionalUnits::CENT,
+            self::CANADIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::CHILEAN_PESO => CurrencyFractionalUnits::CENT,
+            self::CHINESE_YUAN => CurrencyFractionalUnits::FEN,
+            self::COLOMBIAN_PESO => CurrencyFractionalUnits::CENT,
+            self::COMORIAN_FRANC => null,
+            self::CONGOLESE_FRANC => CurrencyFractionalUnits::CENT,
+            self::COSTA_RICAN_COLON => CurrencyFractionalUnits::CENT,
+            self::CROATIAN_KUNA => CurrencyFractionalUnits::LIPA,
+            self::CUBAN_PESO => CurrencyFractionalUnits::CENT,
+            self::CZECH_KORUNA => CurrencyFractionalUnits::HALER,
+            self::DANISH_KRONE => CurrencyFractionalUnits::ORE,
+            self::DJIBOUTIAN_FRANC => null,
+            self::DOMINICAN_PESO => CurrencyFractionalUnits::CENT,
+            self::EGYPTIAN_POUND => CurrencyFractionalUnits::PIASTRE,
+            self::SALVADORAN_COLON => CurrencyFractionalUnits::CENT,
+            self::ERITREAN_NAKFA => CurrencyFractionalUnits::CENT,
+            self::ESWATINI_LILANGENI => CurrencyFractionalUnits::CENT,
+            self::ETHIOPIAN_BIRR => CurrencyFractionalUnits::CENT,
+            self::FIJIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::GAMBIAN_DALASI => CurrencyFractionalUnits::BUTUT,
+            self::GEORGIAN_LARI => CurrencyFractionalUnits::TETRI,
+            self::GHANAIAN_CEDI => CurrencyFractionalUnits::PESAWA,
+            self::GUATEMALAN_QUETZAL => CurrencyFractionalUnits::CENT,
+            self::GUINEAN_FRANC => null,
+            self::GUYANESE_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::HAITIAN_GOURDE => CurrencyFractionalUnits::CENT,
+            self::HONDURAN_LEMPIRA => CurrencyFractionalUnits::CENT,
+            self::HUNGARIAN_FORINT => CurrencyFractionalUnits::FILLER,
+            self::ICELANDIC_KRONA => CurrencyFractionalUnits::AURAR,
+            self::INDIAN_RUPEE => CurrencyFractionalUnits::PAISA,
+            self::INDONESIAN_RUPIAH => CurrencyFractionalUnits::CENT,
+            self::IRANIAN_RIAL => CurrencyFractionalUnits::DINAR,
+            self::IRAQI_DINAR => CurrencyFractionalUnits::FIL,
+            self::ISRAELI_SHEKEL => CurrencyFractionalUnits::AGORA,
+            self::JAMAICAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::JAPANESE_YEN => CurrencyFractionalUnits::CENT,
+            self::JORDANIAN_DINAR => CurrencyFractionalUnits::PIASTRE,
+            self::KAZAKHSTANI_TENGE => CurrencyFractionalUnits::TIYIN,
+            self::KENYAN_SHILLING => CurrencyFractionalUnits::CENT,
+            self::KIRIBATI_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::NORTH_KOREAN_WON => CurrencyFractionalUnits::CHON,
+            self::SOUTH_KOREAN_WON => CurrencyFractionalUnits::JEON,
+            self::KUWAITI_DINAR => CurrencyFractionalUnits::FIL,
+            self::KYRGYZSTANI_SOM => CurrencyFractionalUnits::TIYIN,
+            self::LAO_KIP => CurrencyFractionalUnits::ATT,
+            self::LATVIAN_LATS => CurrencyFractionalUnits::CENT,
+            self::LEBANESE_POUND => CurrencyFractionalUnits::PIASTRE,
+            self::LESOTHO_LOTI => CurrencyFractionalUnits::CENT,
+            self::LIBERIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::LIBYAN_DINAR => CurrencyFractionalUnits::DIRHAM,
+            self::LITHUANIAN_LITAS => CurrencyFractionalUnits::CENT,
+            self::MALAGASY_ARIARY => CurrencyFractionalUnits::IRAIMBILANJA,
+            self::MALAWIAN_KWACHA => CurrencyFractionalUnits::TAMBALA,
+            self::MALAYSIAN_RINGGIT => CurrencyFractionalUnits::CENT,
+            self::MALDIVIAN_RUFIYAA => CurrencyFractionalUnits::LAARI,
+            self::MAURITANIAN_OUGUIYA => CurrencyFractionalUnits::KHOUMS,
+            self::MAURITIAN_RUPEE => CurrencyFractionalUnits::CENT,
+            self::MEXICAN_PESO => CurrencyFractionalUnits::CENT,
+            self::MOLDOVAN_LEU => CurrencyFractionalUnits::BAN,
+            self::MONGOLIAN_TUGRIK => CurrencyFractionalUnits::MONGO,
+            self::MOROCCAN_DIRHAM => CurrencyFractionalUnits::CENT,
+            self::MOZAMBICAN_METICAL => CurrencyFractionalUnits::CENT,
+            self::MYANMA_KYAT => CurrencyFractionalUnits::PYA,
+            self::NAMIBIAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::NEPALESE_RUPEE => CurrencyFractionalUnits::PAISA,
+            self::NEW_ZEALAND_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::NICARAGUAN_CORDOBA => CurrencyFractionalUnits::CENT,
+            self::NIGERIAN_NAIRA => CurrencyFractionalUnits::KOBO,
+            self::MACEDONIAN_DENAR => CurrencyFractionalUnits::DENI,
+            self::NORWEGIAN_KRONE => CurrencyFractionalUnits::ORE,
+            self::OMANI_RIAL => CurrencyFractionalUnits::BAISA,
+            self::PAKISTANI_RUPEE => CurrencyFractionalUnits::PAISA,
+            self::PANAMANIAN_BALBOA => CurrencyFractionalUnits::CENT,
+            self::PAPUA_NEW_GUINEAN_KINA => CurrencyFractionalUnits::TOEA,
+            self::PARAGUAYAN_GUARANI => CurrencyFractionalUnits::CENT,
+            self::PERUVIAN_SOL => CurrencyFractionalUnits::CENT,
+            self::PHILIPPINE_PESO => CurrencyFractionalUnits::CENT,
+            self::POLISH_ZLOTY => CurrencyFractionalUnits::GROSZ,
+            self::QATARI_RIAL => CurrencyFractionalUnits::DIRHAM,
+            self::ROMANIAN_LEU => CurrencyFractionalUnits::BAN,
+            self::RUSSIAN_RUBLE => CurrencyFractionalUnits::KOPEK,
+            self::RWANDAN_FRANC => CurrencyFractionalUnits::CENT,
+            self::SAMOAN_TALA => CurrencyFractionalUnits::SENE,
+            self::SAO_TOME_AND_PRINCIPE_DOBRA => CurrencyFractionalUnits::CENT,
+            self::SAUDI_RIYAL => CurrencyFractionalUnits::HALALA,
+            self::SERBIAN_DINAR => CurrencyFractionalUnits::PARA,
+            self::SEYCHELLOIS_RUPEE => CurrencyFractionalUnits::CENT,
+            self::SIERRA_LEONEAN_LEONE => CurrencyFractionalUnits::CENT,
+            self::SINGAPORE_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::SOLOMON_ISLANDS_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::SOMALI_SHILLING => CurrencyFractionalUnits::CENT,
+            self::SOUTH_AFRICAN_RAND => CurrencyFractionalUnits::CENT,
+            self::SOUTH_SUDANESE_POUND => CurrencyFractionalUnits::PIASTRE,
+            self::SRI_LANKAN_RUPEE => CurrencyFractionalUnits::CENT,
+            self::SUDANESE_POUND => CurrencyFractionalUnits::PIASTRE,
+            self::SURINAMESE_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::SWEDISH_KRONA => CurrencyFractionalUnits::ORE,
+            self::SWISS_FRANC => CurrencyFractionalUnits::RAPPEN,
+            self::SYRIAN_POUND => CurrencyFractionalUnits::PIASTRE,
+            self::TAJIKISTANI_SOMONI => CurrencyFractionalUnits::DIRHAM,
+            self::TANZANIAN_SHILLING => CurrencyFractionalUnits::CENT,
+            self::THAI_BAHT => CurrencyFractionalUnits::SATANG,
+            self::TONGAN_PAANGA => CurrencyFractionalUnits::CENT,
+            self::TRINIDAD_AND_TOBAGO_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::TUNISIAN_DINAR => CurrencyFractionalUnits::MILLIEME,
+            self::TURKISH_LIRA => CurrencyFractionalUnits::KURUS,
+            self::TURKMENISTANI_MANAT => CurrencyFractionalUnits::TENNESI,
+            self::UGANDAN_SHILLING => CurrencyFractionalUnits::CENT,
+            self::UKRAINIAN_HRYVNIA => CurrencyFractionalUnits::KOPIYKA,
+            self::UAE_DIRHAM => CurrencyFractionalUnits::FIL,
+            self::BRITISH_POUND => CurrencyFractionalUnits::PENNY,
+            self::US_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::URUGUAYAN_PESO => CurrencyFractionalUnits::CENT,
+            self::UZBEKISTANI_SOM => CurrencyFractionalUnits::TIYIN,
+            self::VENEZUELAN_BOLIVAR => CurrencyFractionalUnits::CENT,
+            self::VIETNAMESE_DONG => CurrencyFractionalUnits::HAO,
+            self::YEMENI_RIAL => CurrencyFractionalUnits::FIL,
+            self::ZAMBIAN_KWACHA => CurrencyFractionalUnits::NGWEE,
+            self::ZIMBABWEAN_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::CFA_FRANC_BCEAO => CurrencyFractionalUnits::CENT,
+            self::CFA_FRANC_BEAC => CurrencyFractionalUnits::CENT,
+            self::CFP_FRANC => CurrencyFractionalUnits::CENT,
+            self::NETHERLANDS_ANTILLEAN_GUILDER => CurrencyFractionalUnits::CENT,
+            self::ARUBAN_FLORIN => CurrencyFractionalUnits::CENT,
+            self::HONG_KONG_DOLLAR => CurrencyFractionalUnits::CENT,
+            self::MACANESE_PATACA => CurrencyFractionalUnits::AVO,
+            default => null,
+        };
+    }
+
+    /**
+     * Returns the amount of fractional units needed to reach the value of a unit of the currency.
+     * Returns `null` if the currency does not have a fractional unit.
+     *
+     * @link https://en.wikipedia.org/wiki/List_of_circulating_currencies
+     */
+    public function fractionsPerUnit(): ?int {
+        return match ($this) {
+            self::AFGHANI => 100,
+            self::ALBANIAN_LEK => 100,
+            self::ALGERIAN_DINAR => 100,
+            self::EURO => 100,
+            self::ANGOLAN_KWANZA => 100,
+            self::EAST_CARIBBEAN_DOLLAR => 100,
+            self::ARGENTINE_PESO => 100,
+            self::ARMENIAN_DRAM => 100,
+            self::AUSTRALIAN_DOLLAR => 100,
+            self::AZERBAIJANI_MANAT => 100,
+            self::BAHAMIAN_DOLLAR => 100,
+            self::BAHRAINI_DINAR => 1000,
+            self::BANGLADESHI_TAKA => 100,
+            self::BARBADIAN_DOLLAR => 100,
+            self::BELARUSIAN_RUBLE => 100,
+            self::BELIZE_DOLLAR => 100,
+            self::BHUTANESE_NGULTRUM => 100,
+            self::BOLIVIAN_BOLIVIANO => 100,
+            self::BOSNIA_AND_HERZEGOVINA_CONVERTIBLE_MARK => 100,
+            self::BOTSWANA_PULA => 100,
+            self::BRAZILIAN_REAL => 100,
+            self::BRUNEIAN_DOLLAR => 100,
+            self::BULGARIAN_LEV => 100,
+            self::BURUNDIAN_FRANC => null,
+            self::CABO_VERDE_ESCUDO => 100,
+            self::CAMBODIAN_RIEL => 100,
+            self::CANADIAN_DOLLAR => 100,
+            self::CHILEAN_PESO => 100,
+            self::CHINESE_YUAN => 100,
+            self::COLOMBIAN_PESO => 100,
+            self::COMORIAN_FRANC => null,
+            self::CONGOLESE_FRANC => 100,
+            self::COSTA_RICAN_COLON => 100,
+            self::CROATIAN_KUNA => 100,
+            self::CUBAN_PESO => 100,
+            self::CZECH_KORUNA => 100,
+            self::DANISH_KRONE => 100,
+            self::DJIBOUTIAN_FRANC => null,
+            self::DOMINICAN_PESO => 100,
+            self::EGYPTIAN_POUND => 100,
+            self::SALVADORAN_COLON => 100,
+            self::ERITREAN_NAKFA => 100,
+            self::ESWATINI_LILANGENI => 100,
+            self::ETHIOPIAN_BIRR => 100,
+            self::FIJIAN_DOLLAR => 100,
+            self::GAMBIAN_DALASI => 100,
+            self::GEORGIAN_LARI => 100,
+            self::GHANAIAN_CEDI => 100,
+            self::GUATEMALAN_QUETZAL => 100,
+            self::GUINEAN_FRANC => null,
+            self::GUYANESE_DOLLAR => 100,
+            self::HAITIAN_GOURDE => 100,
+            self::HONDURAN_LEMPIRA => 100,
+            self::HUNGARIAN_FORINT => 100,
+            self::ICELANDIC_KRONA => 100,
+            self::INDIAN_RUPEE => 100,
+            self::INDONESIAN_RUPIAH => 100,
+            self::IRANIAN_RIAL => 100,
+            self::IRAQI_DINAR => 1000,
+            self::ISRAELI_SHEKEL => 100,
+            self::JAMAICAN_DOLLAR => 100,
+            self::JAPANESE_YEN => 100,
+            self::JORDANIAN_DINAR => 1000,
+            self::KAZAKHSTANI_TENGE => 100,
+            self::KENYAN_SHILLING => 100,
+            self::KIRIBATI_DOLLAR => 100,
+            self::NORTH_KOREAN_WON => 100,
+            self::SOUTH_KOREAN_WON => 100,
+            self::KUWAITI_DINAR => 1000,
+            self::KYRGYZSTANI_SOM => 100,
+            self::LAO_KIP => 100,
+            self::LATVIAN_LATS => 100,
+            self::LEBANESE_POUND => 100,
+            self::LESOTHO_LOTI => 100,
+            self::LIBERIAN_DOLLAR => 100,
+            self::LIBYAN_DINAR => 1000,
+            self::LITHUANIAN_LITAS => 100,
+            self::MALAGASY_ARIARY => 100,
+            self::MALAWIAN_KWACHA => 100,
+            self::MALAYSIAN_RINGGIT => 100,
+            self::MALDIVIAN_RUFIYAA => 100,
+            self::MAURITANIAN_OUGUIYA => 100,
+            self::MAURITIAN_RUPEE => 100,
+            self::MEXICAN_PESO => 100,
+            self::MOLDOVAN_LEU => 100,
+            self::MONGOLIAN_TUGRIK => 100,
+            self::MOROCCAN_DIRHAM => 100,
+            self::MOZAMBICAN_METICAL => 100,
+            self::MYANMA_KYAT => 100,
+            self::NAMIBIAN_DOLLAR => 100,
+            self::NEPALESE_RUPEE => 100,
+            self::NEW_ZEALAND_DOLLAR => 100,
+            self::NICARAGUAN_CORDOBA => 100,
+            self::NIGERIAN_NAIRA => 100,
+            self::MACEDONIAN_DENAR => 100,
+            self::NORWEGIAN_KRONE => 100,
+            self::OMANI_RIAL => 1000,
+            self::PAKISTANI_RUPEE => 100,
+            self::PANAMANIAN_BALBOA => 100,
+            self::PAPUA_NEW_GUINEAN_KINA => 100,
+            self::PARAGUAYAN_GUARANI => 100,
+            self::PERUVIAN_SOL => 100,
+            self::PHILIPPINE_PESO => 100,
+            self::POLISH_ZLOTY => 100,
+            self::QATARI_RIAL => 100,
+            self::ROMANIAN_LEU => 100,
+            self::RUSSIAN_RUBLE => 100,
+            self::RWANDAN_FRANC => 100,
+            self::SAMOAN_TALA => 100,
+            self::SAO_TOME_AND_PRINCIPE_DOBRA => 100,
+            self::SAUDI_RIYAL => 100,
+            self::SENEGALESE_FRANC => 100,
+            self::SERBIAN_DINAR => 100,
+            self::SEYCHELLOIS_RUPEE => 100,
+            self::SIERRA_LEONEAN_LEONE => 100,
+            self::SINGAPORE_DOLLAR => 100,
+            self::SOLOMON_ISLANDS_DOLLAR => 100,
+            self::SOMALI_SHILLING => 100,
+            self::SOUTH_AFRICAN_RAND => 100,
+            self::SOUTH_SUDANESE_POUND => 100,
+            self::SRI_LANKAN_RUPEE => 100,
+            self::SUDANESE_POUND => 100,
+            self::SURINAMESE_DOLLAR => 100,
+            self::SWEDISH_KRONA => 100,
+            self::SWISS_FRANC => 100,
+            self::SYRIAN_POUND => 100,
+            self::TAJIKISTANI_SOMONI => 100,
+            self::TANZANIAN_SHILLING => 100,
+            self::THAI_BAHT => 100,
+            self::TONGAN_PAANGA => 100,
+            self::TRINIDAD_AND_TOBAGO_DOLLAR => 100,
+            self::TUNISIAN_DINAR => 1000,
+            self::TURKISH_LIRA => 100,
+            self::TURKMENISTANI_MANAT => 100,
+            self::UGANDAN_SHILLING => 100,
+            self::UKRAINIAN_HRYVNIA => 100,
+            self::UAE_DIRHAM => 100,
+            self::BRITISH_POUND => 100,
+            self::US_DOLLAR => 100,
+            self::URUGUAYAN_PESO => 100,
+            self::UZBEKISTANI_SOM => 100,
+            self::VENEZUELAN_BOLIVAR => 100,
+            self::VIETNAMESE_DONG => 100,
+            self::YEMENI_RIAL => 100,
+            self::ZAMBIAN_KWACHA => 100,
+            self::ZIMBABWEAN_DOLLAR => 100,
+            self::CFA_FRANC_BCEAO => 100,
+            self::CFA_FRANC_BEAC => 100,
+            self::CFP_FRANC => 100,
+            self::NETHERLANDS_ANTILLEAN_GUILDER => 100,
+            self::ARUBAN_FLORIN => 100,
+            self::HONG_KONG_DOLLAR => 100,
+            self::MACANESE_PATACA => 100,
+            default => null,
+        };
     }
 }
