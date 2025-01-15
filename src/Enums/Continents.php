@@ -4,8 +4,10 @@ namespace Talp1\LaravelRegistry\Enums;
 
 use Talp1\LaravelRegistry\Enums\Contracts\CanBeCollected;
 use Talp1\LaravelRegistry\Enums\Contracts\HasLabels;
+use Talp1\LaravelRegistry\Enums\Contracts\HasRandom;
 use Talp1\LaravelRegistry\Enums\Traits\CanBeCollected as CanBeCollectedTrait;
 use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
+use Talp1\LaravelRegistry\Enums\Traits\HasRandom as HasRandomTrait;
 
 /**
  * Enum of all the continents in the world using the seven-continent model ({@link https://en.wikipedia.org/wiki/Continent#Number}).
@@ -19,10 +21,14 @@ use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
  * - To avoid confusion with the country Australia and have a more clear container for the isles of the region.
  *
  * @implements CanBeCollected<string>
+ * @implements HasRandom<string>
  */
-enum Continents: string implements CanBeCollected, HasLabels {
-    /** @use CanBeCollectedTrait<string> */
-    use CanBeCollectedTrait, ConvertsValueToLabel;
+enum Continents: string implements CanBeCollected, HasLabels, HasRandom {
+    /**
+     * @use CanBeCollectedTrait<string>
+     *     @use HasRandomTrait<string>
+     */
+    use CanBeCollectedTrait, ConvertsValueToLabel, HasRandomTrait;
 
     case AFRICA = 'africa';
     case ANTARCTICA = 'antarctica';

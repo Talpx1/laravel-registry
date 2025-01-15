@@ -4,8 +4,10 @@ namespace Talp1\LaravelRegistry\Enums;
 
 use Talp1\LaravelRegistry\Enums\Contracts\CanBeCollected;
 use Talp1\LaravelRegistry\Enums\Contracts\HasLabels;
+use Talp1\LaravelRegistry\Enums\Contracts\HasRandom;
 use Talp1\LaravelRegistry\Enums\Traits\CanBeCollected as CanBeCollectedTrait;
 use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
+use Talp1\LaravelRegistry\Enums\Traits\HasRandom as HasRandomTrait;
 
 /**
  * Enum containing all the world currencies and their ISO 4217 info ({@link https://en.wikipedia.org/wiki/ISO_4217}).
@@ -14,10 +16,14 @@ use Talp1\LaravelRegistry\Enums\Traits\ConvertsValueToLabel;
  * If you find an error or an inconsistency, please open an issue or a pull request at {@link https://github.com/Talpx1/laravel-registry}
  *
  * @implements CanBeCollected<string>
+ * @implements HasRandom<string>
  */
-enum Currencies: string implements CanBeCollected, HasLabels {
-    /** @use CanBeCollectedTrait<string> */
-    use CanBeCollectedTrait, ConvertsValueToLabel;
+enum Currencies: string implements CanBeCollected, HasLabels, HasRandom {
+    /**
+     * @use CanBeCollectedTrait<string>
+     *     @use HasRandomTrait<string>
+     */
+    use CanBeCollectedTrait, ConvertsValueToLabel, HasRandomTrait;
 
     case AFGHANI = 'afghani';
     case ALBANIAN_LEK = 'albanian lek';
