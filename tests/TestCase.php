@@ -3,8 +3,9 @@
 namespace Talp1\LaravelRegistry\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Talp1\LaravelRegistry\LaravelRegistryServiceProvider;
+use Talp1\LaravelRegistry\RegistryServiceProvider;
 
 class TestCase extends Orchestra {
     protected function setUp(): void {
@@ -17,17 +18,24 @@ class TestCase extends Orchestra {
 
     protected function getPackageProviders($app) {
         return [
-            LaravelRegistryServiceProvider::class,
+            RegistryServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app) {
-        config()->set('database.default', 'testing');
+        $app['config']->set('database.default', 'sqlite');
+        $app['config']->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
 
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
+        $schema = $app['db']->connection()->getSchemaBuilder();
+
+        $schema->create('fake_users', function (Blueprint $table) {
+            $table->increments('id');
+        });
+
+        runMigrations();
     }
 }
