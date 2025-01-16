@@ -10,13 +10,21 @@ use Illuminate\Support\Facades\Schema;
 // See: TODO: link here when the docs will be done
 
 return new class extends Migration {
-    public function __construct(
+    /** @var string[] */
+    private array $morph_names = [];
+
+    /** @var string[] */
+    private array $table_names = [];
+
+    public function __construct() {
         /** @var string[] */
-        private array $morph_names = config('registry.database.table_names'),
+        $morph_names = config('registry.database.morph_names');
+        $this->morph_names = $morph_names;
 
         /** @var string[] */
-        private array $table_names = config('registry.database.morph_names')
-    ) {}
+        $table_names = config('registry.database.table_names');
+        $this->table_names = $table_names;
+    }
 
     public function up(): void {
         Schema::create($this->table_names['addresses'], function (Blueprint $table) {

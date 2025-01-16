@@ -1,13 +1,20 @@
 <?php
 
 return [
+    /**
+     * It's possible to provide a custom address format.
+     * The placeholders are the attributes of the Address model and they must be enclosed in curly braces.
+     * The placeholders will be replaced with the actual values when the `formatted` accessor is called.
+     */
+    'address_format' => '{street} {civic_number}, {postal_code} {city} ({country})',
+
     'defaults' => [
         'phone_number_prefix' => '1', // this must be a string not prefixed with '+'
     ],
 
     // If you want to use custom models, specify them here
     'models' => [
-
+        'address' => \Talp1\LaravelRegistry\Models\Address::class,
     ],
 
     // You can personalize the table names here
