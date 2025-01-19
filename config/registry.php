@@ -15,6 +15,7 @@ return [
     // If you want to use custom models, specify them here
     'models' => [
         'address' => \Talp1\LaravelRegistry\Models\Address::class,
+        'social_network_profile' => \Talp1\LaravelRegistry\Models\SocialNetworkProfile::class,
     ],
 
     // You can personalize the table names here
@@ -42,5 +43,6 @@ return [
         'languages' => \Talp1\LaravelRegistry\Enums\Languages::class,
         'continents' => \Talp1\LaravelRegistry\Enums\Continents::class,
         'currencies' => \Talp1\LaravelRegistry\Enums\Currencies::class,
+        'social_networks' => \Talp1\LaravelRegistry\Enums\SocialNetworks::class,
     ],
 ];
