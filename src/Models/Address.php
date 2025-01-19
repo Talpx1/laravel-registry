@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string|null $notes
  * @property string $address_owner_id
  * @property string $address_owner_type
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property string $formatted
  * @property Model $owner
  */
