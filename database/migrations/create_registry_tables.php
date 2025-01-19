@@ -56,8 +56,7 @@ return new class extends Migration {
 
             $table->string('title')->nullable();
             $table->string('url');
-            $table->string('handle')->nullable();
-
+            $table->string('username')->nullable();
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
