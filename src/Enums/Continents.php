@@ -26,7 +26,7 @@ use Talp1\LaravelRegistry\Enums\Traits\HasRandom as HasRandomTrait;
 enum Continents: string implements CanBeCollected, HasLabels, HasRandom {
     /**
      * @use CanBeCollectedTrait<string>
-     *     @use HasRandomTrait<string>
+     * @use HasRandomTrait<string>
      */
     use CanBeCollectedTrait, ConvertsValueToLabel, HasRandomTrait;
 
