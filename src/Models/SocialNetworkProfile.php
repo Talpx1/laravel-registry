@@ -29,7 +29,7 @@ class SocialNetworkProfile extends Model {
         'social_network',
         'title',
         'url',
-        'handle',
+        'username',
         'notes',
     ];
 
@@ -41,8 +41,8 @@ class SocialNetworkProfile extends Model {
 
         $this->fillable = [
             ...$this->fillable,
-            config('registry.database.morph_names.social_network_profile_owner_id').'_id',
-            config('registry.database.morph_names.social_network_profile_owner_type').'_type',
+            config('registry.database.morph_names.social_network_profile_owner').'_id',
+            config('registry.database.morph_names.social_network_profile_owner').'_type',
         ];
 
         /** @var string|null $addresses_table */
