@@ -27,4 +27,8 @@ class SocialNetworkProfileFactory extends Factory {
             "{$morph_name}_type" => FakeUser::class,
         ];
     }
+
+    public function forSocialNetwork(SocialNetworks $social_network): self {
+        return $this->state(fn () => ['social_network' => $social_network->value]);
+    }
 }
