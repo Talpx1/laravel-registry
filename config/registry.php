@@ -8,17 +8,15 @@ return [
      */
     'address_format' => '{street} {civic_number}, {postal_code} {city} ({country})',
 
-    'defaults' => [
-        'phone_number_prefix' => '1', // this must be a string not prefixed with '+'
-    ],
-
     // If you want to use custom models, specify them here
     'models' => [
         'address' => \Talp1\LaravelRegistry\Models\Address::class,
         'social_network_profile' => \Talp1\LaravelRegistry\Models\SocialNetworkProfile::class,
+        'website' => \Talp1\LaravelRegistry\Models\Website::class,
+        'phone_number' => \Talp1\LaravelRegistry\Models\PhoneNumber::class,
     ],
 
-    // You can personalize the table names here
+    // You can personalize the table names and morph column names here
     'database' => [
         'morph_names' => [
             'address_owner' => 'address_owner',
@@ -44,5 +42,6 @@ return [
         'continents' => \Talp1\LaravelRegistry\Enums\Continents::class,
         'currencies' => \Talp1\LaravelRegistry\Enums\Currencies::class,
         'social_networks' => \Talp1\LaravelRegistry\Enums\SocialNetworks::class,
+        'phone_line_types' => \Talp1\LaravelRegistry\Enums\PhoneLineTypes::class,
     ],
 ];
