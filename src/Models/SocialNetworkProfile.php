@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string|null $notes
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property string $formatted
+ * @property string $handle
  * @property Model $owner
  */
 class SocialNetworkProfile extends Model {
@@ -45,9 +45,9 @@ class SocialNetworkProfile extends Model {
             config('registry.database.morph_names.social_network_profile_owner').'_type',
         ];
 
-        /** @var string|null $addresses_table */
-        $addresses_table = config('registry.database.table_names.social_network_profiles');
-        $this->table = $addresses_table ?: parent::getTable();
+        /** @var string|null $social_network_profiles_table */
+        $social_network_profiles_table = config('registry.database.table_names.social_network_profiles');
+        $this->table = $social_network_profiles_table ?: parent::getTable();
     }
 
     /**
