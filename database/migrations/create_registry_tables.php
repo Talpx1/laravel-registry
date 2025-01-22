@@ -44,6 +44,17 @@ return new class extends Migration {
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
+
+            // TODO: test
+            $table->unique([
+                'street',
+                'civic_number',
+                'postal_code',
+                'city',
+                'country',
+                $this->morph_names['address_owner'].'_type',
+                $this->morph_names['address_owner'].'_id',
+            ]);
         });
 
         Schema::create($this->table_names['social_network_profiles'], function (Blueprint $table) {
@@ -60,6 +71,21 @@ return new class extends Migration {
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
+
+            // TODO: test
+            $table->unique([
+                'url',
+                $this->morph_names['social_network_profile_owner'].'_type',
+                $this->morph_names['social_network_profile_owner'].'_id',
+            ]);
+
+            // TODO: test
+            $table->unique([
+                'username',
+                'social_network',
+                $this->morph_names['social_network_profile_owner'].'_type',
+                $this->morph_names['social_network_profile_owner'].'_id',
+            ]);
         });
 
         Schema::create($this->table_names['websites'], function (Blueprint $table) {
@@ -72,6 +98,13 @@ return new class extends Migration {
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
+
+            // TODO: test
+            $table->unique([
+                'url',
+                $this->morph_names['website_owner'].'_type',
+                $this->morph_names['website_owner'].'_id',
+            ]);
         });
 
         Schema::create($this->table_names['phone_numbers'], function (Blueprint $table) {
@@ -85,17 +118,25 @@ return new class extends Migration {
             $table->string('title')->nullable();
 
             // This column should only be populated with values from `Countries::allPhonePrefixes()`
-            $table->string('prefix')->default(config('registry.defaults.phone_number_prefix'));
+            $table->string('prefix')->nullable();
 
             $table->string('phone_number');
-            $table->boolean('accepts_sms')->default(true);
-            $table->boolean('accepts_calls')->default(true);
-            $table->boolean('accepts_faxes')->default(false);
-            $table->boolean('is_receive_only')->default(false);
-            $table->boolean('is_operated_by_human')->default(true);
+            $table->boolean('accepts_sms');
+            $table->boolean('accepts_calls');
+            $table->boolean('accepts_faxes');
+            $table->boolean('is_receive_only');
+            $table->boolean('is_operated_by_human');
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
+
+            // TODO: test
+            $table->unique([
+                'prefix',
+                'phone_number',
+                $this->morph_names['phone_number_owner'].'_type',
+                $this->morph_names['phone_number_owner'].'_id',
+            ]);
         });
 
         Schema::create($this->table_names['email_addresses'], function (Blueprint $table) {
@@ -111,6 +152,13 @@ return new class extends Migration {
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
+
+            // TODO: test
+            $table->unique([
+                'email_address',
+                $this->morph_names['email_address_owner'].'_type',
+                $this->morph_names['email_address_owner'].'_id',
+            ]);
         });
     }
 
