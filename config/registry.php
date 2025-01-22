@@ -14,6 +14,7 @@ return [
         'social_network_profile' => \Talp1\LaravelRegistry\Models\SocialNetworkProfile::class,
         'website' => \Talp1\LaravelRegistry\Models\Website::class,
         'phone_number' => \Talp1\LaravelRegistry\Models\PhoneNumber::class,
+        'email_address' => \Talp1\LaravelRegistry\Models\EmailAddress::class,
     ],
 
     // You can personalize the table names and morph column names here
@@ -43,5 +44,6 @@ return [
         'currencies' => \Talp1\LaravelRegistry\Enums\Currencies::class,
         'social_networks' => \Talp1\LaravelRegistry\Enums\SocialNetworks::class,
         'phone_line_types' => \Talp1\LaravelRegistry\Enums\PhoneLineTypes::class,
+        'email_address_providers' => \Talp1\LaravelRegistry\Enums\EmailAddressProviders::class,
     ],
 ];

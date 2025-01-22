@@ -146,9 +146,10 @@ return new class extends Migration {
 
             $table->string('title')->nullable();
             $table->string('email_address');
-            $table->boolean('is_certified')->default(false);
-            $table->boolean('is_no_reply')->default(false);
-            $table->boolean('is_operated_by_human')->default(true);
+            $table->string('provider')->nullable();
+            $table->boolean('is_certified');
+            $table->boolean('is_no_reply');
+            $table->boolean('is_operated_by_human');
             $table->mediumText('notes')->nullable();
 
             $table->timestamps();
