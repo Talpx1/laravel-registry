@@ -3,7 +3,9 @@
 <?php
 
 use Talp1\LaravelRegistry\Enums\Countries;
+use Talp1\LaravelRegistry\Enums\PhoneLineTypes;
 use Talp1\LaravelRegistry\Models\PhoneNumber;
+use Talp1\LaravelRegistry\Tests\Fakes\Enums\FakeEnum;
 
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
@@ -147,6 +149,39 @@ describe('constructor', function () {
             ]);
 
             expect(getTableNameForModel(PhoneNumber::class))->toBe('phone_numbers');
+        });
+    });
+});
+
+describe('casts', function () {
+    it('casts line_type attribute as enum specified in config', function () {
+        config(['registry.enums.phone_line_types' => PhoneLineTypes::class]);
+        $phone_number = PhoneNumber::factory()->create(['line_type' => PhoneLineTypes::FIXED]);
+        expect($phone_number->line_type)->toBe(PhoneLineTypes::FIXED);
+
+        config(['registry.enums.phone_line_types' => FakeEnum::class]);
+        $phone_number = PhoneNumber::factory()->create(['line_type' => FakeEnum::FAKE]);
+        expect($phone_number->line_type)->toBe(FakeEnum::FAKE);
+    });
+});
+
+describe('accessors and mutators', function () {
+    describe('prefixed', function () {
+        it('is formatted joining plus_sign prefix space phone_number', function () {
+            $phone_number = PhoneNumber::factory()->create([
+                'prefix' => '39',
+                'phone_number' => '1234567890',
+            ]);
+            expect($phone_number->prefixed)->toBe('+39 1234567890');
+        });
+
+        it('returns the number as is if prefix is null', function () {
+            $phone_number = PhoneNumber::factory()->create([
+                'prefix' => null,
+                'phone_number' => '1234567890',
+            ]);
+
+            expect($phone_number->prefixed)->toBe('1234567890');
         });
     });
 });
