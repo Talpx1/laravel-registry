@@ -19,7 +19,7 @@ trait HasRandom {
      * Returns a random case value of the enum, for backed enums.
      * Returns a random case of the enum for pure enums.
      *
-     * @return TValue
+     * @return TValue|static
      */
     public static function randomValue(): mixed {
         if (is_a(static::class, BackedEnum::class, true)) {

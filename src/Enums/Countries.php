@@ -1654,7 +1654,7 @@ enum Countries: string implements CanBeCollected, HasLabels, HasRandom {
             self::SWEDEN => [Currencies::SWEDISH_KRONA],
             self::SWITZERLAND => [Currencies::SWISS_FRANC],
             self::SYRIA => [Currencies::SYRIAN_POUND],
-            self::TAIWAN => [Currencies::NEW_TAIWAN_DOLLAR],
+            self::TAIWAN => [Currencies::TAIWANESE_DOLLAR],
             self::TAJIKISTAN => [Currencies::TAJIKISTANI_SOMONI],
             self::TANZANIA => [Currencies::TANZANIAN_SHILLING],
             self::THAILAND => [Currencies::THAI_BAHT],
