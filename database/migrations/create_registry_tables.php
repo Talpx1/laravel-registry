@@ -149,7 +149,6 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // TODO: test
             $table->unique([
                 'email_address',
                 $this->morph_names['email_address_owner'].'_type',
