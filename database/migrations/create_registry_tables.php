@@ -45,7 +45,6 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // TODO: test
             $table->unique([
                 'street',
                 'civic_number',
@@ -72,14 +71,12 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // TODO: test
             $table->unique([
                 'url',
                 $this->morph_names['social_network_profile_owner'].'_type',
                 $this->morph_names['social_network_profile_owner'].'_id',
             ]);
 
-            // TODO: test
             $table->unique([
                 'username',
                 'social_network',
@@ -99,7 +96,6 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // TODO: test
             $table->unique([
                 'url',
                 $this->morph_names['website_owner'].'_type',
@@ -130,7 +126,6 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // TODO: test
             $table->unique([
                 'prefix',
                 'phone_number',

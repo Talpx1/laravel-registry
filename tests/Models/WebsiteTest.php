@@ -49,6 +49,12 @@ describe('database constraints', function () {
     test('nullable columns', function (string $column) {
         assertColumnIsNullable(Website::class, $column);
     })->with(['title', 'notes']);
+
+    test('unique indexes', function () {
+        config(['registry.database.morph_names.website_owner' => 'website_owner']);
+
+        assertIndexIsUnique(Website::class, ['url', 'website_owner_id', 'website_owner_type']);
+    });
 });
 
 describe('read and write db', function () {

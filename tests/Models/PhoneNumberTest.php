@@ -59,6 +59,12 @@ describe('database constraints', function () {
     test('nullable columns', function (string $column) {
         assertColumnIsNullable(PhoneNumber::class, $column);
     })->with(['prefix', 'title', 'notes']);
+
+    test('unique indexes', function () {
+        config(['registry.database.morph_names.phone_number_owner' => 'phone_number_owner']);
+
+        assertIndexIsUnique(PhoneNumber::class, ['prefix', 'phone_number', 'phone_number_owner_id', 'phone_number_owner_type']);
+    });
 });
 
 describe('read and write db', function () {

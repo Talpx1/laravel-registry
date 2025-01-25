@@ -52,6 +52,13 @@ describe('database constraints', function () {
     test('nullable columns', function (string $column) {
         assertColumnIsNullable(SocialNetworkProfile::class, $column);
     })->with(['title', 'notes', 'username']);
+
+    test('unique indexes', function () {
+        config(['registry.database.morph_names.social_network_profile_owner' => 'social_network_profile_owner']);
+
+        assertIndexIsUnique(SocialNetworkProfile::class, ['url', 'social_network_profile_owner_id', 'social_network_profile_owner_type']);
+        assertIndexIsUnique(SocialNetworkProfile::class, ['username', 'social_network', 'social_network_profile_owner_id', 'social_network_profile_owner_type']);
+    });
 });
 
 describe('read and write db', function () {

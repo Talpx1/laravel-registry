@@ -53,6 +53,12 @@ describe('database constraints', function () {
     test('nullable columns', function (string $column) {
         assertColumnIsNullable(EmailAddress::class, $column);
     })->with(['provider', 'title', 'notes']);
+
+    test('unique indexes', function () {
+        config(['registry.database.morph_names.email_address_owner' => 'email_address_owner']);
+
+        assertIndexIsUnique(EmailAddress::class, ['email_address', 'email_address_owner_id', 'email_address_owner_type']);
+    });
 });
 
 describe('read and write db', function () {

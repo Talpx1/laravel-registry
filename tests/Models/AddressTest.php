@@ -55,6 +55,11 @@ describe('database constraints', function () {
     test('nullable columns', function (string $column) {
         assertColumnIsNullable(Address::class, $column);
     })->with(['title', 'notes']);
+
+    test('unique indexes', function () {
+        config(['registry.database.morph_names.address_owner' => 'address_owner']);
+        assertIndexIsUnique(Address::class, ['street', 'civic_number', 'postal_code', 'city', 'country', 'address_owner_id', 'address_owner_type']);
+    });
 });
 
 describe('read and write db', function () {

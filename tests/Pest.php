@@ -91,7 +91,7 @@ function assertColumnIsRequired(string $table, string $column): void {
  * If the provided table is a model class-string, the table name will be inferred from the model.
  */
 function assertDatabaseHasTable(string $table): void {
-    test()->expect(Schema::getTableListing())->toContain(maybeGetTableNameForModel($table));
+    test()->expect(Schema::hasTable(maybeGetTableNameForModel($table)))->toBeTrue();
 }
 
 /**
@@ -100,7 +100,7 @@ function assertDatabaseHasTable(string $table): void {
  * If the provided table is a model class-string, the table name will be inferred from the model.
  */
 function assertDatabaseMissingTable(string $table): void {
-    test()->expect(Schema::getTableListing())->not->toContain(maybeGetTableNameForModel($table));
+    test()->expect(Schema::hasTable(maybeGetTableNameForModel($table)))->toBeFalse();
 }
 
 /**
@@ -110,4 +110,22 @@ function assertDatabaseMissingTable(string $table): void {
  */
 function assertTableHasColumns(string $table, string ...$columns): void {
     test()->expect(Schema::getColumnListing(maybeGetTableNameForModel($table)))->toContain(...$columns);
+}
+
+/**
+ * Assert that a table has a unique index.
+ *
+ * If the provided table is a model class-string, the table name will be inferred from the model.
+ *
+ * @param  string|string[]  $columns  The column(s) that make up the index. If the index is composed of multiple columns, pass them as an array.
+ */
+function assertIndexIsUnique(string $table, string|array $columns): void {
+    if (! is_array($columns)) {
+        $columns = [$columns];
+    }
+
+    $found = collect(Schema::getIndexes(maybeGetTableNameForModel($table)))
+        ->contains(fn ($index) => $index['unique'] && sort($index['columns']) === sort($columns));
+
+    test()->expect($found)->toBeTrue();
 }
