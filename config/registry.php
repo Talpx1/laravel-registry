@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /**
      * It's possible to provide a custom address format.

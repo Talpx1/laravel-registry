@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Talp1\LaravelRegistry\Enums\EmailAddressProviders;
 use Talp1\LaravelRegistry\Models\EmailAddress;
 use Talp1\LaravelRegistry\Tests\Fakes\Enums\FakeEnum;

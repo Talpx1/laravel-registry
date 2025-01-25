@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Talp1\LaravelRegistry\Tests\Fakes\Models;
 
 use Illuminate\Database\Eloquent\Model;

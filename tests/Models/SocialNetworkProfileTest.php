@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Talp1\LaravelRegistry\Enums\SocialNetworks;
 use Talp1\LaravelRegistry\Models\SocialNetworkProfile;
 use Talp1\LaravelRegistry\Tests\Fakes\Enums\FakeEnum;

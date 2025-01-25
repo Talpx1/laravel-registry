@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Talp1\LaravelRegistry\Enums\Countries;
 use Talp1\LaravelRegistry\Enums\PhoneLineTypes;
 use Talp1\LaravelRegistry\Models\PhoneNumber;

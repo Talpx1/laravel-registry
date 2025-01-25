@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Talp1\LaravelRegistry\Models\Website;
 
 use function Pest\Laravel\assertDatabaseHas;
