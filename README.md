@@ -2,8 +2,8 @@
 
 TODO: yet to publish  
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/talp1/laravel-registry.svg?style=flat-square)](https://packagist.org/packages/talp1/laravel-registry)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/talp1/laravel-registry/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/talp1/laravel-registry/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/talp1/laravel-registry/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/talp1/laravel-registry/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/talp1/laravel-registry/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/talp1/laravel-registry/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/talp1/laravel-registry.svg?style=flat-square)](https://packagist.org/packages/talp1/laravel-registry)
 
 Easy registry management for Laravel
