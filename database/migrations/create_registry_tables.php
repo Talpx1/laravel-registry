@@ -27,7 +27,7 @@ return new class extends Migration {
     }
 
     public function up(): void {
-        Schema::create($this->table_names['addresses'], function (Blueprint $table) {
+        Schema::create($this->table_names['addresses'], function (Blueprint $table): void {
             $table->id();
 
             $table->morphs($this->morph_names['address_owner']);
@@ -56,7 +56,7 @@ return new class extends Migration {
             ]);
         });
 
-        Schema::create($this->table_names['social_network_profiles'], function (Blueprint $table) {
+        Schema::create($this->table_names['social_network_profiles'], function (Blueprint $table): void {
             $table->id();
 
             $table->morphs($this->morph_names['social_network_profile_owner']);
@@ -85,7 +85,7 @@ return new class extends Migration {
             ]);
         });
 
-        Schema::create($this->table_names['websites'], function (Blueprint $table) {
+        Schema::create($this->table_names['websites'], function (Blueprint $table): void {
             $table->id();
 
             $table->morphs($this->morph_names['website_owner']);
@@ -103,7 +103,7 @@ return new class extends Migration {
             ]);
         });
 
-        Schema::create($this->table_names['phone_numbers'], function (Blueprint $table) {
+        Schema::create($this->table_names['phone_numbers'], function (Blueprint $table): void {
             $table->id();
 
             $table->morphs($this->morph_names['phone_number_owner']);
@@ -134,7 +134,7 @@ return new class extends Migration {
             ]);
         });
 
-        Schema::create($this->table_names['email_addresses'], function (Blueprint $table) {
+        Schema::create($this->table_names['email_addresses'], function (Blueprint $table): void {
             $table->id();
 
             $table->morphs($this->morph_names['email_address_owner']);

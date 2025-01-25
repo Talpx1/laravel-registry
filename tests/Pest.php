@@ -63,7 +63,7 @@ function getColumn(string $table, string $column): array {
 
     return array_values(Arr::where(
         Schema::getColumns($table),
-        fn ($col) => $col['name'] === $column
+        fn ($col): bool => $col['name'] === $column
     ))[0];
 }
 
@@ -125,7 +125,7 @@ function assertIndexIsUnique(string $table, string|array $columns): void {
     }
 
     $found = collect(Schema::getIndexes(maybeGetTableNameForModel($table)))
-        ->contains(fn ($index) => $index['unique'] && sort($index['columns']) === sort($columns));
+        ->contains(fn ($index): bool => $index['unique'] && sort($index['columns']) === sort($columns));
 
     test()->expect($found)->toBeTrue();
 }

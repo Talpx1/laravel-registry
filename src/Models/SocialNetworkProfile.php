@@ -66,7 +66,7 @@ class SocialNetworkProfile extends Model {
 
     /** @return Attribute<string, never> */
     protected function handle(): Attribute {
-        return Attribute::get(fn () => $this->social_network->handlePrefix().$this->username);
+        return Attribute::get(fn (): string => $this->social_network->handlePrefix().$this->username);
     }
 
     /**

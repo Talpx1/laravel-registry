@@ -1,5 +1,3 @@
-
-
 <?php
 
 use Talp1\LaravelRegistry\Models\Website;
@@ -7,8 +5,8 @@ use Talp1\LaravelRegistry\Models\Website;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-describe('database constraints', function () {
-    test('table name is read from config', function () {
+describe('database constraints', function (): void {
+    test('table name is read from config', function (): void {
         config(['registry.database.table_names.websites' => 'websites']);
         recreateAllTables();
         assertDatabaseHasTable('websites');
@@ -19,7 +17,7 @@ describe('database constraints', function () {
         assertDatabaseMissingTable('websites');
     });
 
-    test('morph columns are created from config', function () {
+    test('morph columns are created from config', function (): void {
         config(['registry.database.morph_names.website_owner' => 'website_owner']);
         recreateAllTables();
         assertTableHasColumns(Website::class, 'website_owner_id', 'website_owner_type');
@@ -29,7 +27,7 @@ describe('database constraints', function () {
         assertTableHasColumns(Website::class, 'test_id', 'test_type');
     });
 
-    test('expected columns are created', function () {
+    test('expected columns are created', function (): void {
         assertTableHasColumns(Website::class,
             'id',
             'website_owner_id',
@@ -42,23 +40,23 @@ describe('database constraints', function () {
         );
     });
 
-    test('required columns', function (string $column) {
+    test('required columns', function (string $column): void {
         assertColumnIsRequired(Website::class, $column);
     })->with(['website_owner_id', 'website_owner_type', 'url']);
 
-    test('nullable columns', function (string $column) {
+    test('nullable columns', function (string $column): void {
         assertColumnIsNullable(Website::class, $column);
     })->with(['title', 'notes']);
 
-    test('unique indexes', function () {
+    test('unique indexes', function (): void {
         config(['registry.database.morph_names.website_owner' => 'website_owner']);
 
         assertIndexIsUnique(Website::class, ['url', 'website_owner_id', 'website_owner_type']);
     });
 });
 
-describe('read and write db', function () {
-    it('can create a website', function () {
+describe('read and write db', function (): void {
+    it('can create a website', function (): void {
         $website = Website::factory()->create();
 
         assertDatabaseHas(Website::class, [
@@ -66,7 +64,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can update a website', function () {
+    it('can update a website', function (): void {
         $website = Website::factory()->create();
         $website->update(['url' => 'test.test']);
 
@@ -76,7 +74,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can delete a website', function () {
+    it('can delete a website', function (): void {
         $website = Website::factory()->create();
         $websiteId = $website->id;
         $website->delete();
@@ -86,7 +84,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can retrieve a website', function () {
+    it('can retrieve a website', function (): void {
         $website = Website::factory()->create();
 
         $foundWebsite = Website::find($website->id);
@@ -95,7 +93,7 @@ describe('read and write db', function () {
         expect($foundWebsite->id)->toBe($website->id);
     });
 
-    it('can list all websites', function () {
+    it('can list all websites', function (): void {
         Website::factory()->count(5)->create();
 
         $website = Website::all();
@@ -104,8 +102,8 @@ describe('read and write db', function () {
     });
 });
 
-describe('constructor', function () {
-    it('add morphs attributes from config to fillable', function () {
+describe('constructor', function (): void {
+    it('add morphs attributes from config to fillable', function (): void {
         config([
             'registry.database.morph_names.website_owner' => 'test',
         ]);
@@ -123,8 +121,8 @@ describe('constructor', function () {
         expect($website->getFillable())->toBe($expected_fillable);
     });
 
-    describe('table name', function () {
-        it('binds model table from config', function () {
+    describe('table name', function (): void {
+        it('binds model table from config', function (): void {
             config([
                 'registry.database.table_names.websites' => 'test',
             ]);
@@ -132,7 +130,7 @@ describe('constructor', function () {
             expect(getTableNameForModel(Website::class))->toBe('test');
         });
 
-        it('delegates table name guessing if config has no table name', function () {
+        it('delegates table name guessing if config has no table name', function (): void {
             config([
                 'registry.database.table_names.websites' => null,
             ]);
@@ -142,8 +140,8 @@ describe('constructor', function () {
     });
 });
 
-describe('relations', function () {
-    it('morphs the owner of the website', function () {
+describe('relations', function (): void {
+    it('morphs the owner of the website', function (): void {
         $website = Website::factory()->create();
 
         expect($website->owner)->toBeInstanceOf($website->website_owner_type);

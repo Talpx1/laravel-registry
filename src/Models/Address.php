@@ -70,7 +70,7 @@ class Address extends Model {
 
     /** @return Attribute<string, never> */
     protected function formatted(): Attribute {
-        return Attribute::get(fn () => preg_replace_callback(
+        return Attribute::get(fn (): string => preg_replace_callback(
             '/\{(\w+)\}/',
             fn ($matches) => [...$this->attributesToArray(), 'country' => $this->country->label()][$matches[1]] ?? $matches[0],
             config('registry.address_format') // @phpstan-ignore argument.type

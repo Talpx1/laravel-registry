@@ -35,34 +35,34 @@ class PhoneNumberFactory extends Factory {
     }
 
     public function fixed(): self {
-        return $this->state(fn () => ['line_type' => PhoneLineTypes::FIXED->value]);
+        return $this->state(fn (): array => ['line_type' => PhoneLineTypes::FIXED->value]);
     }
 
     public function mobile(): self {
-        return $this->state(fn () => ['line_type' => PhoneLineTypes::MOBILE->value]);
+        return $this->state(fn (): array => ['line_type' => PhoneLineTypes::MOBILE->value]);
     }
 
     public function withCountryPrefix(Countries $country): self {
-        return $this->state(fn () => ['prefix' => $country->phonePrefix()]);
+        return $this->state(fn (): array => ['prefix' => $country->phonePrefix()]);
     }
 
     public function acceptsSMS(bool $accept = true): self {
-        return $this->state(fn () => ['accepts_sms' => $accept]);
+        return $this->state(fn (): array => ['accepts_sms' => $accept]);
     }
 
     public function acceptsCalls(bool $accept = true): self {
-        return $this->state(fn () => ['accepts_calls' => $accept]);
+        return $this->state(fn (): array => ['accepts_calls' => $accept]);
     }
 
     public function acceptsFaxes(bool $accept = true): self {
-        return $this->state(fn () => ['accepts_faxes' => $accept]);
+        return $this->state(fn (): array => ['accepts_faxes' => $accept]);
     }
 
     public function isReceiveOnly(bool $is_receive_only = true): self {
-        return $this->state(fn () => ['is_receive_only' => $is_receive_only]);
+        return $this->state(fn (): array => ['is_receive_only' => $is_receive_only]);
     }
 
     public function isOperatedByHuman(bool $is_operated_by_human = true): self {
-        return $this->state(fn () => ['is_operated_by_human' => $is_operated_by_human]);
+        return $this->state(fn (): array => ['is_operated_by_human' => $is_operated_by_human]);
     }
 }

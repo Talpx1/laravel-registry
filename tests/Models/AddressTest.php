@@ -1,5 +1,3 @@
-
-
 <?php
 
 use Talp1\LaravelRegistry\Enums\Countries;
@@ -9,8 +7,8 @@ use Talp1\LaravelRegistry\Tests\Fakes\Enums\FakeEnum;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-describe('database constraints', function () {
-    test('table name is read from config', function () {
+describe('database constraints', function (): void {
+    test('table name is read from config', function (): void {
         config(['registry.database.table_names.addresses' => 'addresses']);
         recreateAllTables();
         assertDatabaseHasTable('addresses');
@@ -21,7 +19,7 @@ describe('database constraints', function () {
         assertDatabaseMissingTable('addresses');
     });
 
-    test('morph columns are created from config', function () {
+    test('morph columns are created from config', function (): void {
         config(['registry.database.morph_names.address_owner' => 'address_owner']);
         recreateAllTables();
         assertTableHasColumns(Address::class, 'address_owner_id', 'address_owner_type');
@@ -31,7 +29,7 @@ describe('database constraints', function () {
         assertTableHasColumns(Address::class, 'test_id', 'test_type');
     });
 
-    test('expected columns are created', function () {
+    test('expected columns are created', function (): void {
         assertTableHasColumns(Address::class,
             'id',
             'address_owner_id',
@@ -48,22 +46,22 @@ describe('database constraints', function () {
         );
     });
 
-    test('required columns', function (string $column) {
+    test('required columns', function (string $column): void {
         assertColumnIsRequired(Address::class, $column);
     })->with(['address_owner_id', 'address_owner_type', 'street', 'civic_number', 'postal_code', 'city', 'country']);
 
-    test('nullable columns', function (string $column) {
+    test('nullable columns', function (string $column): void {
         assertColumnIsNullable(Address::class, $column);
     })->with(['title', 'notes']);
 
-    test('unique indexes', function () {
+    test('unique indexes', function (): void {
         config(['registry.database.morph_names.address_owner' => 'address_owner']);
         assertIndexIsUnique(Address::class, ['street', 'civic_number', 'postal_code', 'city', 'country', 'address_owner_id', 'address_owner_type']);
     });
 });
 
-describe('read and write db', function () {
-    it('can create an address', function () {
+describe('read and write db', function (): void {
+    it('can create an address', function (): void {
         $address = Address::factory()->create();
 
         assertDatabaseHas(Address::class, [
@@ -71,7 +69,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can update an address', function () {
+    it('can update an address', function (): void {
         $address = Address::factory()->create();
         $address->update(['city' => 'New City']);
 
@@ -81,7 +79,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can delete an address', function () {
+    it('can delete an address', function (): void {
         $address = Address::factory()->create();
         $addressId = $address->id;
         $address->delete();
@@ -91,7 +89,7 @@ describe('read and write db', function () {
         ]);
     });
 
-    it('can retrieve an address', function () {
+    it('can retrieve an address', function (): void {
         $address = Address::factory()->create();
 
         $foundAddress = Address::find($address->id);
@@ -100,7 +98,7 @@ describe('read and write db', function () {
         expect($foundAddress->id)->toBe($address->id);
     });
 
-    it('can list all addresses', function () {
+    it('can list all addresses', function (): void {
         Address::factory()->count(5)->create();
 
         $addresses = Address::all();
@@ -109,8 +107,8 @@ describe('read and write db', function () {
     });
 });
 
-describe('constructor', function () {
-    it('add morphs attributes from config to fillable', function () {
+describe('constructor', function (): void {
+    it('add morphs attributes from config to fillable', function (): void {
         config([
             'registry.database.morph_names.address_owner' => 'test',
         ]);
@@ -132,8 +130,8 @@ describe('constructor', function () {
         expect($address->getFillable())->toBe($expected_fillable);
     });
 
-    describe('table name', function () {
-        it('binds model table from config', function () {
+    describe('table name', function (): void {
+        it('binds model table from config', function (): void {
             config([
                 'registry.database.table_names.addresses' => 'test',
             ]);
@@ -141,7 +139,7 @@ describe('constructor', function () {
             expect(getTableNameForModel(Address::class))->toBe('test');
         });
 
-        it('delegates table name guessing if config has no table name', function () {
+        it('delegates table name guessing if config has no table name', function (): void {
             config([
                 'registry.database.table_names.addresses' => null,
             ]);
@@ -151,8 +149,8 @@ describe('constructor', function () {
     });
 });
 
-describe('casts', function () {
-    it('casts country attribute as enum specified in config', function () {
+describe('casts', function (): void {
+    it('casts country attribute as enum specified in config', function (): void {
         config(['registry.enums.countries' => Countries::class]);
         $address = Address::factory()->create(['country' => Countries::ITALY]);
         expect($address->country)->toBe(Countries::ITALY);
@@ -163,9 +161,9 @@ describe('casts', function () {
     });
 });
 
-describe('accessors and mutators', function () {
-    describe('formatted', function () {
-        it('correctly parses format from config', function () {
+describe('accessors and mutators', function (): void {
+    describe('formatted', function (): void {
+        it('correctly parses format from config', function (): void {
             config(['registry.address_format' => '{street} {civic_number}, {postal_code} {city} ({country})']);
             $address = Address::factory()->create([
                 'street' => 'Via Roma',
@@ -187,7 +185,7 @@ describe('accessors and mutators', function () {
             expect($address->formatted)->toBe('Via Roma 1 - 00000, Roma Italy');
         });
 
-        it('leaves placeholder untouched if it can not be resolved', function () {
+        it('leaves placeholder untouched if it can not be resolved', function (): void {
             config(['registry.address_format' => '{streetERROR} {civic_number}, {postal_code} {city} ({country})']);
 
             $address = Address::factory()->create([
@@ -203,8 +201,8 @@ describe('accessors and mutators', function () {
     });
 });
 
-describe('relations', function () {
-    it('morphs the owner of the address', function () {
+describe('relations', function (): void {
+    it('morphs the owner of the address', function (): void {
         $address = Address::factory()->create();
 
         expect($address->owner)->toBeInstanceOf($address->address_owner_type);

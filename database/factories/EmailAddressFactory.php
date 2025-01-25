@@ -31,18 +31,18 @@ class EmailAddressFactory extends Factory {
     }
 
     public function isCertified(bool $is_certified = true): self {
-        return $this->state(fn () => ['is_certified' => $is_certified]);
+        return $this->state(fn (): array => ['is_certified' => $is_certified]);
     }
 
     public function isNoReply(bool $is_no_reply = true): self {
-        return $this->state(fn () => ['is_no_reply' => $is_no_reply]);
+        return $this->state(fn (): array => ['is_no_reply' => $is_no_reply]);
     }
 
     public function isOperatedByHuman(bool $is_operated_by_human = true): self {
-        return $this->state(fn () => ['is_operated_by_human' => $is_operated_by_human]);
+        return $this->state(fn (): array => ['is_operated_by_human' => $is_operated_by_human]);
     }
 
     public function forProvider(EmailAddressProviders $provider): self {
-        return $this->state(fn () => ['provider' => $provider->value]);
+        return $this->state(fn (): array => ['provider' => $provider->value]);
     }
 }

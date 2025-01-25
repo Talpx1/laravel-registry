@@ -1060,7 +1060,7 @@ enum Countries: string implements CanBeCollected, HasLabels, HasRandom {
      * @return string[]
      */
     public static function allPhonePrefixes(): array {
-        return array_map(fn (self $country) => $country->phonePrefix(), self::cases());
+        return array_map(fn (self $country): string => $country->phonePrefix(), self::cases());
     }
 
     /**

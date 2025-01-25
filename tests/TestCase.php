@@ -12,7 +12,7 @@ class TestCase extends Orchestra {
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Talp1\\LaravelRegistry\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName): string => 'Talp1\\LaravelRegistry\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
@@ -22,7 +22,7 @@ class TestCase extends Orchestra {
         ];
     }
 
-    public function getEnvironmentSetUp($app) {
+    public function getEnvironmentSetUp($app): void {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
@@ -32,7 +32,7 @@ class TestCase extends Orchestra {
 
         $schema = $app['db']->connection()->getSchemaBuilder();
 
-        $schema->create('fake_users', function (Blueprint $table) {
+        $schema->create('fake_users', function (Blueprint $table): void {
             $table->increments('id');
         });
 
