@@ -9,6 +9,6 @@ trait ConvertsValueToLabel {
      * Returns a label for the given case
      */
     public function label(): string {
-        return ucwords($this->value);
+        return ucwords(str_starts_with($this->value, '_') ? substr($this->value, 1) : $this->value);
     }
 }
