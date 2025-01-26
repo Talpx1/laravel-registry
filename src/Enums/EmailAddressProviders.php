@@ -317,7 +317,7 @@ enum EmailAddressProviders: string implements CanBeCollected, HasLabels, HasRand
             self::FRONTIERNET => ['.com'],
             self::FTML => ['.com'],
             self::GANDI => ['.fr', '.net', '.us'],
-            self::GMAIL => ['.com', '.co.uk', '.edu'],
+            self::GMAIL => ['.com'],
             self::GMX => ['.de', '.at'],
             self::GOOGLEMAIL => ['.com', '.co.uk'],
             self::GROUPOFFICE => ['.org', '.net'],
