@@ -1,10 +1,14 @@
 # Laravel Registry
 
 TODO: yet to publish  
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/talp1/laravel-registry.svg?style=flat-square)](https://packagist.org/packages/talp1/laravel-registry)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Talpx1/laravel-registry/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Talpx1/laravel-registry/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/talp1/laravel-registry.svg?style=flat-square)](https://packagist.org/packages/talp1/laravel-registry)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/talp1/laravel-registry.svg)](https://packagist.org/packages/talp1/laravel-registry)
+[![Total Downloads](https://img.shields.io/packagist/dt/talp1/laravel-registry.svg)](https://packagist.org/packages/talp1/laravel-registry)  
+
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/Talpx1/laravel-registry/run-tests.yml?branch=main&label=tests)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Talpx1/laravel-registry/fix-php-code-style-issues.yml?branch=main&label=code%20style)](https://github.com/Talpx1/laravel-registry/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)  
+
+[![Hire Me](https://img.shields.io/badge/hire_me-available!-lime)](mailto:hello@simonecerruti.com)
+[![Support](https://img.shields.io/badge/support-thanks_<3-magenta)](https://buymeacoffee.com/talp1)
 
 Easy registry management for Laravel
 
