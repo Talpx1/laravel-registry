@@ -6,7 +6,8 @@ namespace Talp1\LaravelRegistry\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Talp1\LaravelRegistry\Models\Contracts\BaseModel;
+use Talp1\LaravelRegistry\Models\Traits\HasOwner;
 
 /**
  * @property-read int $id
@@ -23,36 +24,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property \Carbon\Carbon $updated_at
  * @property Model $owner
  */
-class EmailAddress extends Model {
+class EmailAddress extends BaseModel {
     /** @use HasFactory<\Talp1\LaravelRegistry\Database\Factories\EmailAddressFactory> */
-    use HasFactory;
-
-    protected $fillable = [
-        'title',
-        'email_address',
-        'provider',
-        'is_certified',
-        'is_no_reply',
-        'is_operated_by_human',
-        'notes',
-    ];
-
-    /**
-     * @param  array<string, mixed>  $attributes
-     */
-    public function __construct(array $attributes = []) {
-        parent::__construct($attributes);
-
-        $this->fillable = [
-            ...$this->fillable,
-            config('registry.database.morph_names.email_address_owner').'_id',
-            config('registry.database.morph_names.email_address_owner').'_type',
-        ];
-
-        /** @var string|null $email_addresses_table */
-        $email_addresses_table = config('registry.database.table_names.email_addresses');
-        $this->table = $email_addresses_table ?: parent::getTable();
-    }
+    use HasFactory, HasOwner;
 
     /**
      * Get the attributes that should be cast.
@@ -66,15 +40,5 @@ class EmailAddress extends Model {
         return [
             'provider' => $email_address_providers_enum,
         ];
-    }
-
-    /**
-     * @return MorphTo<\Illuminate\Database\Eloquent\Model, $this>
-     */
-    public function owner(): MorphTo {
-        /** @var string */
-        $email_address_morph_name = config('registry.database.morph_names.email_address_owner');
-
-        return $this->morphTo($email_address_morph_name);
     }
 }

@@ -109,26 +109,16 @@ describe('read and write db', function (): void {
 });
 
 describe('constructor', function (): void {
-    it('add morphs attributes from config to fillable', function (): void {
-        config([
-            'registry.database.morph_names.email_address_owner' => 'test',
-        ]);
-
+    it('adds primary key to guarded', function (): void {
         $email_address = new EmailAddress;
 
-        $expected_fillable = [
-            'title',
-            'email_address',
-            'provider',
-            'is_certified',
-            'is_no_reply',
-            'is_operated_by_human',
-            'notes',
-            'test_id',
-            'test_type',
+        $expected_guarded = [
+            'created_at',
+            'updated_at',
+            $email_address->getKeyName(),
         ];
 
-        expect($email_address->getFillable())->toBe($expected_fillable);
+        expect($email_address->getGuarded())->toBe($expected_guarded);
     });
 
     describe('table name', function (): void {

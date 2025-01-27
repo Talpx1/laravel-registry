@@ -115,29 +115,16 @@ describe('read and write db', function (): void {
 });
 
 describe('constructor', function (): void {
-    it('add morphs attributes from config to fillable', function (): void {
-        config([
-            'registry.database.morph_names.phone_number_owner' => 'test',
-        ]);
-
+    it('adds primary key to guarded', function (): void {
         $phone_number = new PhoneNumber;
 
-        $expected_fillable = [
-            'line_type',
-            'title',
-            'prefix',
-            'phone_number',
-            'accepts_sms',
-            'accepts_calls',
-            'accepts_faxes',
-            'is_receive_only',
-            'is_operated_by_human',
-            'notes',
-            'test_id',
-            'test_type',
+        $expected_guarded = [
+            'created_at',
+            'updated_at',
+            $phone_number->getKeyName(),
         ];
 
-        expect($phone_number->getFillable())->toBe($expected_fillable);
+        expect($phone_number->getGuarded())->toBe($expected_guarded);
     });
 
     describe('table name', function (): void {

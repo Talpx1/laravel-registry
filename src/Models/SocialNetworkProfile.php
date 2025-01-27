@@ -7,7 +7,8 @@ namespace Talp1\LaravelRegistry\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Talp1\LaravelRegistry\Models\Contracts\BaseModel;
+use Talp1\LaravelRegistry\Models\Traits\HasOwner;
 
 /**
  * @property-read int $id
@@ -23,34 +24,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $handle
  * @property Model $owner
  */
-class SocialNetworkProfile extends Model {
+class SocialNetworkProfile extends BaseModel {
     /** @use HasFactory<\Talp1\LaravelRegistry\Database\Factories\SocialNetworkProfileFactory> */
-    use HasFactory;
-
-    protected $fillable = [
-        'social_network',
-        'title',
-        'url',
-        'username',
-        'notes',
-    ];
-
-    /**
-     * @param  array<string, mixed>  $attributes
-     */
-    public function __construct(array $attributes = []) {
-        parent::__construct($attributes);
-
-        $this->fillable = [
-            ...$this->fillable,
-            config('registry.database.morph_names.social_network_profile_owner').'_id',
-            config('registry.database.morph_names.social_network_profile_owner').'_type',
-        ];
-
-        /** @var string|null $social_network_profiles_table */
-        $social_network_profiles_table = config('registry.database.table_names.social_network_profiles');
-        $this->table = $social_network_profiles_table ?: parent::getTable();
-    }
+    use HasFactory, HasOwner;
 
     /**
      * Get the attributes that should be cast.
@@ -69,15 +45,5 @@ class SocialNetworkProfile extends Model {
     /** @return Attribute<string, never> */
     protected function handle(): Attribute {
         return Attribute::get(fn (): string => $this->social_network->handlePrefix().$this->username);
-    }
-
-    /**
-     * @return MorphTo<\Illuminate\Database\Eloquent\Model, $this>
-     */
-    public function owner(): MorphTo {
-        /** @var string */
-        $address_morph_name = config('registry.database.morph_names.social_network_profile_owner');
-
-        return $this->morphTo($address_morph_name);
     }
 }

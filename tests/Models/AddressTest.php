@@ -110,26 +110,16 @@ describe('read and write db', function (): void {
 });
 
 describe('constructor', function (): void {
-    it('add morphs attributes from config to fillable', function (): void {
-        config([
-            'registry.database.morph_names.address_owner' => 'test',
-        ]);
-
+    it('adds primary key to guarded', function (): void {
         $address = new Address;
 
-        $expected_fillable = [
-            'title',
-            'street',
-            'civic_number',
-            'postal_code',
-            'city',
-            'country',
-            'notes',
-            'test_id',
-            'test_type',
+        $expected_guarded = [
+            'created_at',
+            'updated_at',
+            $address->getKeyName(),
         ];
 
-        expect($address->getFillable())->toBe($expected_fillable);
+        expect($address->getGuarded())->toBe($expected_guarded);
     });
 
     describe('table name', function (): void {

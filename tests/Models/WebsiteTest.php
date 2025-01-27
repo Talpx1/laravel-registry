@@ -105,22 +105,16 @@ describe('read and write db', function (): void {
 });
 
 describe('constructor', function (): void {
-    it('add morphs attributes from config to fillable', function (): void {
-        config([
-            'registry.database.morph_names.website_owner' => 'test',
-        ]);
-
+    it('adds primary key to guarded', function (): void {
         $website = new Website;
 
-        $expected_fillable = [
-            'title',
-            'url',
-            'notes',
-            'test_id',
-            'test_type',
+        $expected_guarded = [
+            'created_at',
+            'updated_at',
+            $website->getKeyName(),
         ];
 
-        expect($website->getFillable())->toBe($expected_fillable);
+        expect($website->getGuarded())->toBe($expected_guarded);
     });
 
     describe('table name', function (): void {

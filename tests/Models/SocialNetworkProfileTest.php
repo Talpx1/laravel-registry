@@ -109,24 +109,16 @@ describe('read and write db', function (): void {
 });
 
 describe('constructor', function (): void {
-    it('add morphs attributes from config to fillable', function (): void {
-        config([
-            'registry.database.morph_names.social_network_profile_owner' => 'test',
-        ]);
+    it('adds primary key to guarded', function (): void {
+        $social_network = new SocialNetworkProfile;
 
-        $social_network_profile = new SocialNetworkProfile;
-
-        $expected_fillable = [
-            'social_network',
-            'title',
-            'url',
-            'username',
-            'notes',
-            'test_id',
-            'test_type',
+        $expected_guarded = [
+            'created_at',
+            'updated_at',
+            $social_network->getKeyName(),
         ];
 
-        expect($social_network_profile->getFillable())->toBe($expected_fillable);
+        expect($social_network->getGuarded())->toBe($expected_guarded);
     });
 
     describe('table name', function (): void {
