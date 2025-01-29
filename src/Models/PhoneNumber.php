@@ -49,6 +49,6 @@ class PhoneNumber extends BaseModel {
 
     /** @return Attribute<string, never> */
     protected function prefixed(): Attribute {
-        return Attribute::get(fn () => $this->prefix === null ? $this->phone_number : "+{$this->prefix} {$this->phone_number}");
+        return Attribute::get(fn () => is_null($this->prefix) ? $this->phone_number : "+{$this->prefix} {$this->phone_number}");
     }
 }
