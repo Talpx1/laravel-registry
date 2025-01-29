@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Talp1\LaravelRegistry\Enums\Countries;
+use Talp1\LaravelRegistry\Enums\SitePurposes;
 use Talp1\LaravelRegistry\Models\Address;
 use Talp1\LaravelRegistry\Tests\Fakes\Enums\FakeEnum;
 
@@ -42,6 +43,7 @@ describe('database constraints', function (): void {
             'postal_code',
             'city',
             'country',
+            'purpose',
             'notes',
             'created_at',
             'updated_at',
@@ -54,7 +56,7 @@ describe('database constraints', function (): void {
 
     test('nullable columns', function (string $column): void {
         assertColumnIsNullable(Address::class, $column);
-    })->with(['title', 'notes']);
+    })->with(['title', 'purpose', 'notes']);
 
     test('unique indexes', function (): void {
         config(['registry.database.morph_names.address_owner' => 'address_owner']);
@@ -150,6 +152,16 @@ describe('casts', function (): void {
         config(['registry.enums.countries' => FakeEnum::class]);
         $address = Address::factory()->create(['country' => FakeEnum::FAKE]);
         expect($address->country)->toBe(FakeEnum::FAKE);
+    });
+
+    it('casts purpose attribute as enum specified in config', function (): void {
+        config(['registry.enums.site_purposes' => SitePurposes::class]);
+        $address = Address::factory()->create(['purpose' => SitePurposes::RESIDENCE]);
+        expect($address->purpose)->toBe(SitePurposes::RESIDENCE);
+
+        config(['registry.enums.site_purposes' => FakeEnum::class]);
+        $address = Address::factory()->create(['purpose' => FakeEnum::FAKE]);
+        expect($address->purpose)->toBe(FakeEnum::FAKE);
     });
 });
 

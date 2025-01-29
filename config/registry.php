@@ -47,5 +47,6 @@ return [
         'social_networks' => \Talp1\LaravelRegistry\Enums\SocialNetworks::class,
         'phone_line_types' => \Talp1\LaravelRegistry\Enums\PhoneLineTypes::class,
         'email_address_providers' => \Talp1\LaravelRegistry\Enums\EmailAddressProviders::class,
+        'site_purposes' => \Talp1\LaravelRegistry\Enums\SitePurposes::class,
     ],
 ];

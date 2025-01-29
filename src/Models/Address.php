@@ -18,6 +18,7 @@ use Talp1\LaravelRegistry\Models\Traits\HasOwner;
  * @property string $postal_code
  * @property string $city
  * @property \Talp1\LaravelRegistry\Enums\Countries $country
+ * @property \Talp1\LaravelRegistry\Enums\SitePurposes $purpose
  * @property string|null $notes
  * @property string $address_owner_id
  * @property string $address_owner_type
@@ -39,8 +40,12 @@ class Address extends BaseModel {
         /** @var class-string $countries_enum */
         $countries_enum = config('registry.enums.countries');
 
+        /** @var class-string $site_purposes_enum */
+        $site_purposes_enum = config('registry.enums.site_purposes');
+
         return [
             'country' => $countries_enum,
+            'purpose' => $site_purposes_enum,
         ];
     }
 

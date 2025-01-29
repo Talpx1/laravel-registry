@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 // Some of the columns in these tables, even if created as primitive types, should only be populated with an enumeration of possible values.
 // This behavior should be enforced by the application (eg. during validation).
 // Not using an enum type column nor a foreign key constraint because of the reasons explained in the documentation.
-// See: TODO: link here when the docs will be done
+// See: https://github.com/Talpx1/laravel-registry?tab=readme-ov-file#database-design-choices
 
 return new class extends Migration {
     /** @var string[] */
@@ -29,6 +29,7 @@ return new class extends Migration {
     }
 
     public function up(): void {
+        // ADDRESSES
         Schema::create($this->table_names['addresses'], function (Blueprint $table): void {
             $table->id();
 
@@ -42,6 +43,10 @@ return new class extends Migration {
 
             // This column should only be populated with values from `Countries::values()`
             $table->string('country');
+
+            // This column should only be populated with values from `SitePurposes::values()`
+            // See documentation for design choices about this column: https://github.com/Talpx1/laravel-registry?tab=readme-ov-file#purpose-aware-addresses
+            $table->string('purpose')->nullable();
 
             $table->mediumText('notes')->nullable();
 
@@ -58,6 +63,7 @@ return new class extends Migration {
             ]);
         });
 
+        // SOCIAL NETWORK PROFILES
         Schema::create($this->table_names['social_network_profiles'], function (Blueprint $table): void {
             $table->id();
 
@@ -87,6 +93,7 @@ return new class extends Migration {
             ]);
         });
 
+        // WEBSITES
         Schema::create($this->table_names['websites'], function (Blueprint $table): void {
             $table->id();
 
@@ -105,6 +112,7 @@ return new class extends Migration {
             ]);
         });
 
+        // PHONE NUMBERS
         Schema::create($this->table_names['phone_numbers'], function (Blueprint $table): void {
             $table->id();
 
@@ -136,6 +144,7 @@ return new class extends Migration {
             ]);
         });
 
+        // EMAIL ADDRESSES
         Schema::create($this->table_names['email_addresses'], function (Blueprint $table): void {
             $table->id();
 

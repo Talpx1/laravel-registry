@@ -114,6 +114,21 @@ But this would mean to create a table with all the postal codes for each city, a
 Plus it's possible, for the enum case, that there are 2 equals postal codes for different city, maybe in different countries, causing even more troubles. Not to mention performance etc.  
 So in this case may be ok to violate NF best practices and enforce a good application-side validation on postal codes. In such case [`axlon/laravel-postal-code-validation`](https://github.com/axlon/laravel-postal-code-validation) may be of interest.
 
+### Purpose Aware Addresses
+Even if the addresses table should only know about addresses and not their function/"purpose", in the schema they still have the responsibility to store this info.  
+Let's take as an example a person residence address: this info could be stored in a dedicated column of the `people` table, maybe called `residence_address_id`, which would be a FK to the `addresses` table.  
+Theoretically everything would work, but this design would also introduce inefficiencies, a potential risk of inconsistent data input and, consequently, the associated added complexity for validation to avoid this possibility.  
+This scenario arises from the fact that the addresses are tied to the "owner" via a polymorphic relationship.  
+Suppose we have an address table already populated with data. Nothing prevents us from assigning in our `residence_address_id` column of a person X, the id of an address belonging to a person Y who has nothing to do with our person X. The cause of this is the dual possibility of assigning a correlation between `address` and `person`, once via the polymorphic relationship in the `addresses` table (address belongs to person), another time in the `residence_address_id` column of the `people` table (the person has a residential address, although at a relationship level it would be more correct to say that the person belongs to the address)
+We should therefore take the trouble, at a software validation level, to make sure that the address belongs to person X before assigning it to him.  
+Now that we have analyzed the problems of inconsistency and complexity, let's look at the problem of inefficiency.
+To create the record for the residential address in the `addresses` table, we need to define who owns that address (due to the polymorphic relationship). So first we should create the person, with the `residence_address_id` column set to null. Now we can create the address, then edit the person record and insert the id of the newly created address into the `residence_address_id` column. For a total of 3 steps.  
+The solution adopted, that is to make the addresses aware of their purpose (such as a residence), solves the problems mentioned.
+In fact, now there is no longer the possibility of defining a double correlation between `address` and `person`, as the `residence_address_id` column does not exist. Consequently, once the person has been created, we can create their residential address, specifying the purpose of this address, precisely, as a residence, without worrying about having to carry out complex validation checks. For a total of 2 steps.  
+In addition we had an advantage in scalability and flexibility, as we can now define new addresses with different purposes for that person (e.g. a private office) without having to modify the migration of the `people` table and add a column for each 'purpose' of address.  
+The disadvantage is that, to ensure that a person cannot have multiple residential addresses assigned, we will have to do some validation on the software side.  
+By having the `purpose` column of the address table `nullable` (in case an address has no particular purpose), this design should be robust and flexible enough for most cases. For more advanced eventualities, it is always possible to modify the migration.
+
 ## Testing
 
 ```bash
