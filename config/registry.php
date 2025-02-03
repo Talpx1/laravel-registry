@@ -48,5 +48,13 @@ return [
         'phone_line_types' => \Talp1\LaravelRegistry\Enums\PhoneLineTypes::class,
         'email_address_providers' => \Talp1\LaravelRegistry\Enums\EmailAddressProviders::class,
         'site_purposes' => \Talp1\LaravelRegistry\Enums\SitePurposes::class,
+        'genders' => \Talp1\LaravelRegistry\Enums\Genders::class,
+        'education_levels' => \Talp1\LaravelRegistry\Enums\EducationLevels::class,
+        'eyes_colors' => \Talp1\LaravelRegistry\Enums\EyeColors::class,
+        'hair_colors' => \Talp1\LaravelRegistry\Enums\HairColors::class,
+        'skin_tones' => \Talp1\LaravelRegistry\Enums\SkinTones::class,
+        'blood_types' => \Talp1\LaravelRegistry\Enums\BloodTypes::class,
+        'marital_statuses' => \Talp1\LaravelRegistry\Enums\MaritalStatuses::class,
+        'religions' => \Talp1\LaravelRegistry\Enums\Religions::class,
     ],
 ];
