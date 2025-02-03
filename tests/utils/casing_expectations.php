@@ -82,13 +82,18 @@ expect()->extend('toBeUppercaseAllowingSymbols', function () {
     return $this->toBeUppercaseAllowing(['symbols']);
 });
 
+/** Expect that a value is uppercase, allowing for accented chars.  */
+expect()->extend('toBeUppercaseAllowingAccentedChars', function () {
+    return $this->toBeUppercaseAllowing(['upper_accented_chars']);
+});
+
 /**
- * Expect that a value is uppercase, allowing non word characters (numbers, spaces, symbols).
+ * Expect that a value is uppercase, allowing non word characters (numbers, spaces, symbols, uppercase accented chars).
  *
  * @internal dashes are comprehended in symbols, so no need of specifying that set.
  */
 expect()->extend('toBeUppercaseAllowingNonWordChars', function () {
-    return $this->toBeUppercaseAllowing(['numbers', 'spaces', 'symbols']);
+    return $this->toBeUppercaseAllowing(['numbers', 'spaces', 'symbols', 'upper_accented_chars']);
 });
 
 /** Expect that a value is lowercase, allowing for numbers.  */
@@ -107,18 +112,23 @@ expect()->extend('toBeLowercaseAllowingDashes', function () {
 });
 
 /**
- * Expect that a value is uppercase, allowing for symbols.
+ * Expect that a value is lowercase, allowing for symbols.
  * Symbols are: `-`, `!`, `$`, `@`, `#`, `%`, `^`, `&`, `*`, `(`, `)`, `_`, `+`, `|`, `~`, `=`, ```, `{`, `}`, `\`, `[`, `]`, `:`, `"`, `;`, `'`, `<`, `>`, `?`, `,`, `.`, `/`
  */
-expect()->extend('toBeUppercaseAllowingSymbols', function () {
+expect()->extend('toBeLowercaseAllowingSymbols', function () {
     return $this->toBeLowercaseAllowing(['symbols']);
 });
 
+/** Expect that a value is lowercase, allowing for accented chars.  */
+expect()->extend('toBeLowercaseAllowingAccentedChars', function () {
+    return $this->toBeLowercaseAllowing(['lower_accented_chars']);
+});
+
 /**
- * Expect that a value is lowercase, allowing non word characters (numbers, spaces, symbols).
+ * Expect that a value is lowercase, allowing non word characters (numbers, spaces, symbols, lowercase accented chars).
  *
  * @internal dashes are comprehended in symbols, so no need of specifying that set.
  */
 expect()->extend('toBeLowercaseAllowingNonWordChars', function () {
-    return $this->toBeLowercaseAllowing(['numbers', 'spaces', 'symbols']);
+    return $this->toBeLowercaseAllowing(['numbers', 'spaces', 'symbols', 'lower_accented_chars']);
 });
