@@ -17,6 +17,7 @@ return [
         'website' => \Talp1\LaravelRegistry\Models\Website::class,
         'phone_number' => \Talp1\LaravelRegistry\Models\PhoneNumber::class,
         'email_address' => \Talp1\LaravelRegistry\Models\EmailAddress::class,
+        'person' => \Talp1\LaravelRegistry\Models\Person::class,
     ],
 
     // You can personalize the table names and morph column names here
@@ -35,6 +36,7 @@ return [
             'websites' => 'websites',
             'phone_numbers' => 'phone_numbers',
             'email_addresses' => 'email_addresses',
+            'people' => 'people',
         ],
     ],
 
@@ -50,7 +52,7 @@ return [
         'site_purposes' => \Talp1\LaravelRegistry\Enums\SitePurposes::class,
         'genders' => \Talp1\LaravelRegistry\Enums\Genders::class,
         'education_levels' => \Talp1\LaravelRegistry\Enums\EducationLevels::class,
-        'eyes_colors' => \Talp1\LaravelRegistry\Enums\EyeColors::class,
+        'eye_colors' => \Talp1\LaravelRegistry\Enums\EyeColors::class,
         'hair_colors' => \Talp1\LaravelRegistry\Enums\HairColors::class,
         'skin_tones' => \Talp1\LaravelRegistry\Enums\SkinTones::class,
         'blood_types' => \Talp1\LaravelRegistry\Enums\BloodTypes::class,

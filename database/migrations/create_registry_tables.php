@@ -166,6 +166,46 @@ return new class extends Migration {
                 $this->morph_names['email_address_owner'].'_id',
             ]);
         });
+
+        // PEOPLE
+        Schema::create($this->table_names['people'], function (Blueprint $table): void {
+            $table->id();
+
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+
+            // This column should only be populated with values from `Genders::values()`
+            $table->string('gender')->nullable();
+
+            $table->integer('height_in_cm')->nullable();
+            $table->integer('weight_in_kg')->nullable();
+
+            // This column should only be populated with values from `EyeColors::possibleEyeColors()`
+            $table->string('eyes_color')->nullable();
+            // This column should only be populated with values from `HairColor::values()`
+            $table->string('hair_color')->nullable();
+            // This column should only be populated with values from `SkinTones::values()`
+            $table->string('skin_tone')->nullable();
+            // This column should only be populated with values from `BloodTypes::values()`
+            $table->string('blood_type')->nullable();
+            // This column should only be populated with values from `MaritalStatuses::values()`
+            $table->string('marital_status')->nullable();
+            // This column should only be populated with values from `Religions::values()`
+            $table->string('religion')->nullable();
+
+            $table->timestamp('date_of_birth')->nullable();
+            $table->string('birth_city')->nullable();
+
+            // This column should only be populated with values from `Countries::values()`
+            $table->string('birth_country')->nullable();
+
+            // This column should only be populated with values from `EducationLevels::values()`
+            $table->string('education_level')->nullable();
+            $table->mediumText('notes')->nullable();
+
+            $table->timestamps();
+        });
     }
 
     public function down(): void {
