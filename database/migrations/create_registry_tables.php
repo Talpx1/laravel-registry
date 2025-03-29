@@ -235,6 +235,8 @@ return new class extends Migration {
             $table->string('foundation_country')->nullable();
 
             $table->mediumText('notes')->nullable();
+
+            $table->timestamps();
         });
     }
 
