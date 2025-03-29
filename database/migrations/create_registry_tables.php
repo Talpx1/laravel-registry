@@ -206,6 +206,36 @@ return new class extends Migration {
 
             $table->timestamps();
         });
+
+        // COMPANIES
+        Schema::create($this->table_names['companies'], function (Blueprint $table): void {
+            $table->id();
+            $table->string('name');
+            $table->string('vat_code')->unique();
+
+            // This column should only be populated with values from `CompanyTypes::values()`
+            $table->string('company_type')->nullable();
+
+            $table->foreignId('parent_company_id')->nullable()->constrained($this->table_names['companies']);
+
+            // This column should only be populated with values from `CompanyLegalForms::values()`
+            $table->string('legal_form')->nullable();
+
+            // This column should only be populated with values from `EconomicSectors::values()`
+            $table->string('economic_sector')->nullable();
+
+            $table->integer('share_capital_amount')->nullable();
+
+            // This column should only be populated with values from `Currencies::values()`
+            $table->string('share_capital_currency')->nullable();
+
+            $table->year('foundation_year')->nullable();
+
+            // This column should only be populated with values from `Currencies::values()`
+            $table->string('foundation_country')->nullable();
+
+            $table->mediumText('notes')->nullable();
+        });
     }
 
     public function down(): void {
