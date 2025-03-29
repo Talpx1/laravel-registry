@@ -20,7 +20,7 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
  * @property string $vat_code
  * @property \Talp1\LaravelRegistry\Enums\CompanyTypes $company_type
  * @property int|null $parent_company_id
- * @property \Talp1\LaravelRegistry\Enums\CompanyLegalForms $legal_form
+ * @property \Talp1\LaravelRegistry\Enums\CompanyLegalForms|null $legal_form
  * @property \Talp1\LaravelRegistry\Enums\EconomicSectors|null $economic_sector
  * @property int|null $share_capital_amount
  * @property \Talp1\LaravelRegistry\Enums\Currencies|null $share_capital_currency
@@ -73,7 +73,7 @@ class Company extends BaseModel {
 
     /** @return Attribute<string, never> */
     protected function fullCompanyName(): Attribute {
-        return Attribute::get(fn (): string => implode(' ', array_filter([$this->name, $this->legal_form->label()])));
+        return Attribute::get(fn (): string => implode(' ', array_filter([$this->name, $this->legal_form?->abbreviations()[0]])));
     }
 
     /** @return Attribute<int|null, never> */
@@ -85,7 +85,7 @@ class Company extends BaseModel {
     protected function shareCapital(): Attribute {
         return Attribute::get(fn (): ?string => is_null($this->share_capital_amount) || is_null($this->share_capital_currency) ?
             null :
-            "{$this->share_capital_amount} {$this->share_capital_currency->symbolOrAbbreviation()}"
+            "{$this->share_capital_amount}{$this->share_capital_currency->symbolOrAbbreviation()}"
         );
     }
 }
