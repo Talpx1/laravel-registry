@@ -20,7 +20,7 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
  * @property string|null $middle_name
  * @property string $last_name
  * @property \Talp1\LaravelRegistry\Enums\Genders|null $gender
- * @property \Carbon\Carbon|null $date_of_birth
+ * @property \Illuminate\Support\Carbon|null $date_of_birth
  * @property string|null $birth_city
  * @property \Talp1\LaravelRegistry\Enums\Countries|null $birth_country
  * @property int|null $height_in_cm
@@ -33,8 +33,8 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
  * @property \Talp1\LaravelRegistry\Enums\MaritalStatuses|null $marital_status
  * @property \Talp1\LaravelRegistry\Enums\Religions|null $religion
  * @property string|null $notes
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read string $full_name
  * @property-read int|null $age
  * @property-read string|null $birth_week_day

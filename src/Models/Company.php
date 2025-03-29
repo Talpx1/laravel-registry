@@ -27,8 +27,8 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
  * @property \Illuminate\Support\Carbon|null $foundation_date
  * @property \Talp1\LaravelRegistry\Enums\Countries|null $foundation_country
  * @property string|null $notes
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read string $full_company_name
  * @property-read int|null $years_of_activity
  * @property-read string|null $share_capital

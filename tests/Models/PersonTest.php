@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Carbon\Carbon;
 use Talp1\LaravelRegistry\Enums\BloodTypes;
 use Talp1\LaravelRegistry\Enums\Countries;
 use Talp1\LaravelRegistry\Enums\EducationLevels;
@@ -259,7 +258,7 @@ describe('casts', function (): void {
 
     it('casts date_of_birth as date', function (): void {
         $person = Person::factory()->create(['date_of_birth' => '2001-01-01']);
-        expect($person->date_of_birth)->toBeInstanceOf(Carbon::class);
+        expect($person->date_of_birth)->toBeInstanceOf(\Illuminate\Support\Carbon::class);
         expect($person->date_of_birth->format('Y-m-d'))->toBe('2001-01-01');
     });
 });

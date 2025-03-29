@@ -25,8 +25,8 @@ use Talp1\LaravelRegistry\Models\Traits\HasOwner;
  * @property bool $is_receive_only
  * @property bool $is_operated_by_human
  * @property string|null $notes
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property Model $owner
  */
 class PhoneNumber extends BaseModel {

@@ -22,8 +22,8 @@ use Talp1\LaravelRegistry\Models\Traits\HasOwner;
  * @property string|null $notes
  * @property string $address_owner_id
  * @property string $address_owner_type
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property string $formatted
  * @property Model $owner
  */

@@ -19,8 +19,8 @@ use Talp1\LaravelRegistry\Models\Traits\HasOwner;
  * @property string $url
  * @property string|null $username
  * @property string|null $notes
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property string $handle
  * @property Model $owner
  */
