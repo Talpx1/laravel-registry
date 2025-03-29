@@ -19,6 +19,7 @@ use Talp1\LaravelRegistry\Enums\Traits\HasRandom as HasRandomTrait;
  * @implements CanBeCollected<string>
  * @implements HasRandom<string>
  */
+// TODO: populate with ISO 20275 data + add PHPDocs to method
 enum CompanyLegalForms: string implements CanBeCollected, HasLabels, HasRandom {
     /**
      * @use CanBeCollectedTrait<string>
@@ -26,35 +27,43 @@ enum CompanyLegalForms: string implements CanBeCollected, HasLabels, HasRandom {
      */
     use CanBeCollectedTrait, HasRandomTrait;
 
-    // TODO
+    case LIMITED = 'limited';
 
     public function elfCode(): string {
         return match ($this) {
+            self::LIMITED => 'TEMP'
         };
     }
 
     public function countryOfFormation(): Countries {
         return match ($this) {
+            self::LIMITED => Countries::UNITED_STATES
         };
     }
 
-    public function abbreviation(): string {
+    /** @return string[] */
+    public function abbreviations(): array {
         return match ($this) {
+            self::LIMITED => ['Ltd.']
         };
     }
 
-    public function abbreviationInLocalLanguage(): string {
+    /** @return string[] */
+    public function abbreviationsInLocalLanguage(): ?array {
         return match ($this) {
+            default => null
         };
     }
 
     public function label(): string {
         return match ($this) {
+            self::LIMITED => 'Limited'
         };
     }
 
-    public function labelInLocalLanguage(): string {
+    public function labelInLocalLanguage(): ?string {
         return match ($this) {
+            default => null
         };
     }
 }
