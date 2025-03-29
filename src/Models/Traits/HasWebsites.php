@@ -6,17 +6,14 @@ namespace Talp1\LaravelRegistry\Models\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait HasSocialNetworkProfile {
+trait HasWebsites {
     /** @return MorphMany<\Illuminate\Database\Eloquent\Model, $this> */
-    public function socialNetworkProfiles(): MorphMany {
+    public function websites(): MorphMany {
         /** @var class-string<\Illuminate\Database\Eloquent\Model> */
-        $model = config('registry.models.social_network_profile');
+        $model = config('registry.models.website');
         /** @var string */
-        $morph_name = config('registry.database.morph_names.social_network_profile_owner');
+        $morph_name = config('registry.database.morph_names.website_owner');
 
         return $this->morphMany($model, $morph_name);
     }
-
-    // scopes
-    // TODO: whereHasSocialNetworkProfileFor(SocialNetwork)
 }

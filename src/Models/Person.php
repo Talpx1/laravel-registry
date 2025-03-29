@@ -7,11 +7,12 @@ namespace Talp1\LaravelRegistry\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Talp1\LaravelRegistry\Models\Contracts\BaseModel;
-use Talp1\LaravelRegistry\Models\Traits\HasAddress;
-use Talp1\LaravelRegistry\Models\Traits\HasEmailAddress;
-use Talp1\LaravelRegistry\Models\Traits\HasPhoneNumber;
-use Talp1\LaravelRegistry\Models\Traits\HasSocialNetworkProfile;
-use Talp1\LaravelRegistry\Models\Traits\HasWebsite;
+use Talp1\LaravelRegistry\Models\Traits\HasAddresses;
+use Talp1\LaravelRegistry\Models\Traits\HasEmailAddresses;
+use Talp1\LaravelRegistry\Models\Traits\HasJobs;
+use Talp1\LaravelRegistry\Models\Traits\HasPhoneNumbers;
+use Talp1\LaravelRegistry\Models\Traits\HasSocialNetworkProfiles;
+use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
 
 /**
  * @property-read int $id
@@ -47,16 +48,18 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsite;
  * @property-read \Illuminate\Database\Eloquent\Collection<PhoneNumber> $phoneNumbers
  * @property-read \Illuminate\Database\Eloquent\Collection<SocialNetworkProfile> $socialNetworkProfiles
  * @property-read \Illuminate\Database\Eloquent\Collection<Website> $websites
+ * @property-read \Illuminate\Database\Eloquent\Collection<Job> $jobs
  *
  * @method \Illuminate\Database\Eloquent\Relations\MorphMany addresses()
  * @method \Illuminate\Database\Eloquent\Relations\MorphMany emailAddresses()
  * @method \Illuminate\Database\Eloquent\Relations\MorphMany phoneNumbers()
  * @method \Illuminate\Database\Eloquent\Relations\MorphMany socialNetworkProfiles()
  * @method \Illuminate\Database\Eloquent\Relations\MorphMany websites()
+ * @method \Illuminate\Database\Eloquent\Relations\BelongsToMany jobs()
  */
 class Person extends BaseModel {
     /** @use HasFactory<\Talp1\LaravelRegistry\Database\Factories\PersonFactory> */
-    use HasAddress, HasEmailAddress, HasFactory, HasPhoneNumber, HasSocialNetworkProfile, HasWebsite;
+    use HasAddresses, HasEmailAddresses, HasFactory, HasJobs, HasPhoneNumbers, HasSocialNetworkProfiles, HasWebsites;
 
     private const float CM_TO_INCHES_COEFFICIENT = 0.393701;
 

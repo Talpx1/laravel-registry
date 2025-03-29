@@ -6,7 +6,7 @@ namespace Talp1\LaravelRegistry\Models\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait HasEmailAddress {
+trait HasEmailAddresses {
     /** @return MorphMany<\Illuminate\Database\Eloquent\Model, $this> */
     public function emailAddresses(): MorphMany {
         /** @var class-string<\Illuminate\Database\Eloquent\Model> */
