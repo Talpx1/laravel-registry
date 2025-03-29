@@ -24,7 +24,7 @@ use Talp1\LaravelRegistry\Models\Traits\HasWebsites;
  * @property \Talp1\LaravelRegistry\Enums\EconomicSectors|null $economic_sector
  * @property int|null $share_capital_amount
  * @property \Talp1\LaravelRegistry\Enums\Currencies|null $share_capital_currency
- * @property int|null $foundation_year
+ * @property \Illuminate\Support\Carbon|null $foundation_date
  * @property \Talp1\LaravelRegistry\Enums\Countries|null $foundation_country
  * @property string|null $notes
  * @property \Carbon\Carbon $created_at
@@ -62,6 +62,7 @@ class Company extends BaseModel {
             'legal_form' => $enums['company_legal_forms'],
             'economic_sector' => $enums['economic_sectors'],
             'share_capital_currency' => $enums['currencies'],
+            'foundation_date' => 'date',
         ];
     }
 
@@ -77,7 +78,7 @@ class Company extends BaseModel {
 
     /** @return Attribute<int|null, never> */
     protected function yearsOfActivity(): Attribute {
-        return Attribute::get(fn (): ?int => $this->foundation_year?->yearsAgo());
+        return Attribute::get(fn (): ?int => is_null($this->foundation_date) ? null : intval($this->foundation_date->diffInYears()));
     }
 
     /** @return Attribute<string|null, never> */

@@ -28,7 +28,7 @@ class CompanyFactory extends Factory {
             'economic_sector' => EconomicSectors::randomValue(),
             'share_capital_amount' => rand(10000, 1000000),
             'share_capital_currency' => Currencies::randomValue(),
-            'foundation_year' => fake()->year(),
+            'foundation_date' => fake()->date(),
             'foundation_country' => Countries::randomValue(),
             'notes' => fake()->paragraph(),
         ];

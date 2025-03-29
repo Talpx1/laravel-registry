@@ -229,7 +229,7 @@ return new class extends Migration {
             // This column should only be populated with values from `Currencies::values()`
             $table->string('share_capital_currency')->nullable();
 
-            $table->year('foundation_year')->nullable();
+            $table->timestamp('foundation_date')->nullable();
 
             // This column should only be populated with values from `Currencies::values()`
             $table->string('foundation_country')->nullable();
