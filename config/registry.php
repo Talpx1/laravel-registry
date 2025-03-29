@@ -18,6 +18,7 @@ return [
         'phone_number' => \Talp1\LaravelRegistry\Models\PhoneNumber::class,
         'email_address' => \Talp1\LaravelRegistry\Models\EmailAddress::class,
         'person' => \Talp1\LaravelRegistry\Models\Person::class,
+        'job' => \Talp1\LaravelRegistry\Models\Job::class,
     ],
 
     // You can personalize the table names and morph column names here
@@ -37,6 +38,7 @@ return [
             'phone_numbers' => 'phone_numbers',
             'email_addresses' => 'email_addresses',
             'people' => 'people',
+            'companies' => 'companies',
         ],
     ],
 
@@ -58,5 +60,9 @@ return [
         'blood_types' => \Talp1\LaravelRegistry\Enums\BloodTypes::class,
         'marital_statuses' => \Talp1\LaravelRegistry\Enums\MaritalStatuses::class,
         'religions' => \Talp1\LaravelRegistry\Enums\Religions::class,
+        'company_types' => \Talp1\LaravelRegistry\Enums\CompanyTypes::class,
+        'jobs' => \Talp1\LaravelRegistry\Enums\Jobs::class,
+        'economic_sectors' => \Talp1\LaravelRegistry\Enums\EconomicSectors::class,
+        'company_legal_forms' => \Talp1\LaravelRegistry\Enums\CompanyLegalForms::class,
     ],
 ];
