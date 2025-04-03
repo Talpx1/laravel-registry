@@ -6,5 +6,5 @@ namespace Talp1\LaravelRegistry\Models;
 
 use Talp1\LaravelRegistry\Models\Contracts\EnumModel;
 
-//TODO: test
+// TODO: test
 class Job extends EnumModel {}
