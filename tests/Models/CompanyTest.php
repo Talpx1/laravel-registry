@@ -161,8 +161,8 @@ describe('casts', function (): void {
 
     it('casts legal_form attribute as enum specified in config', function (): void {
         config(['registry.enums.company_legal_forms' => CompanyLegalForms::class]);
-        $company = Company::factory()->create(['legal_form' => CompanyLegalForms::LIMITED]);
-        expect($company->legal_form)->toBe(CompanyLegalForms::LIMITED);
+        $company = Company::factory()->create(['legal_form' => CompanyLegalForms::IT_SOCIETA_A_RESPONSABILITA_LIMITATA]);
+        expect($company->legal_form)->toBe(CompanyLegalForms::IT_SOCIETA_A_RESPONSABILITA_LIMITATA);
 
         config(['registry.enums.company_legal_forms' => FakeEnum::class]);
         $company = Company::factory()->create(['legal_form' => FakeEnum::FAKE]);
@@ -201,9 +201,9 @@ describe('accessors and mutators', function (): void {
         it('joins name and legal form first abbreviation with a space', function (): void {
             $company = Company::factory()->create([
                 'name' => 'Name',
-                'legal_form' => CompanyLegalForms::LIMITED,
+                'legal_form' => CompanyLegalForms::IT_SOCIETA_A_RESPONSABILITA_LIMITATA,
             ]);
-            expect($company->full_company_name)->toBe('Name '.CompanyLegalForms::LIMITED->abbreviations()[0]);
+            expect($company->full_company_name)->toBe('Name '.CompanyLegalForms::IT_SOCIETA_A_RESPONSABILITA_LIMITATA->abbreviations()[0]);
         });
 
         it('discards nulls before joining', function (): void {
