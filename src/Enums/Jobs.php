@@ -22,6 +22,7 @@ use Talp1\LaravelRegistry\Enums\Traits\HasSushiModel as HasSushiModelTrait;
  * @implements CanBeCollected<string>
  * @implements HasRandom<string>
  */
+// TODO: test
 enum Jobs: string implements CanBeCollected, HasLabels, HasRandom, HasSushiModel {
     /**
      * @use CanBeCollectedTrait<string>

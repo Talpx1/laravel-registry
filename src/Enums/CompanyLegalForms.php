@@ -22,6 +22,7 @@ use Talp1\LaravelRegistry\Enums\Traits\HasRandom as HasRandomTrait;
  * @implements CanBeCollected<string>
  * @implements HasRandom<string>
  */
+// TODO: test
 enum CompanyLegalForms: string implements CanBeCollected, HasLabels, HasRandom {
     /**
      * @use CanBeCollectedTrait<string>
