@@ -73,7 +73,7 @@ class Company extends BaseModel {
 
     /** @return Attribute<string, never> */
     protected function fullCompanyName(): Attribute {
-        return Attribute::get(fn (): string => implode(' ', array_filter([$this->name, $this->legal_form?->abbreviations()[0]])));
+        return Attribute::get(fn (): string => implode(' ', array_filter([$this->name, $this->legal_form?->abbreviations()[0] ?? null])));
     }
 
     /** @return Attribute<int|null, never> */
