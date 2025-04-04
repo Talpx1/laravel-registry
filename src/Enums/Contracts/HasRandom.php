@@ -9,9 +9,13 @@ namespace Talp1\LaravelRegistry\Enums\Contracts;
  */
 interface HasRandom {
     /**
-     * Returns a random case of the enum.
+     * Returns a random case or an array of random cases of the enum.
+     * @param int $amount
+     * @return ($amount is 1 ? static[] : static)
+     *
+     * @throws \InvalidArgumentException when `$amount` < 1
      */
-    public static function random(): static;
+    public static function random(int $amount = 1): static|array;
 
     /**
      * Returns a random case value of the enum, for backed enums.

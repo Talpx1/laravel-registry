@@ -11,10 +11,28 @@ use BackedEnum;
  */
 trait HasRandom {
     /**
-     * Returns a random case of the enum.
+     * Returns a random case or an array of random cases of the enum.
+     * @param int $amount
+     * @return ($amount is 1 ? static[] : static)
+     *
+     * @throws \InvalidArgumentException when `$amount` < 1
      */
-    public static function random(): static {
-        return static::cases()[array_rand(static::cases())];
+    public static function random(int $amount = 1): static|array {
+        if($amount < 1){
+            throw new \InvalidArgumentException("Invalid amount: the minimum for random is 1.");
+        }
+
+        if($amount === 1) {
+            return  static::cases()[array_rand(static::cases())];
+        }
+
+        $random_cases = [];
+
+        foreach(array_rand(static::cases(), $amount) as $key) {
+            $random_cases[] = static::cases()[$key];
+        }
+
+        return $random_cases;
     }
 
     /**
