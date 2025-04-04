@@ -13,7 +13,7 @@ trait HasRandom {
     /**
      * Returns a random case or an array of random cases of the enum.
      *
-     * @return ($amount is 1 ? static[] : static)
+     * @return ($amount is 1 ? static : static[])
      *
      * @throws \InvalidArgumentException when `$amount` < 1
      */
