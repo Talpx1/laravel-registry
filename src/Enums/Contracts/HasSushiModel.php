@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Talp1\LaravelRegistry\Enums\Contracts;
 
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @template TModel of Model
+ */
 interface HasSushiModel {
     /**
-     * Returns an array to be used as Sushi model rows.
-     * This array will use as IDs the case value in a backed enum context.
-     * Pure enums are not supported.
+     * Returns the model instance for this case.
      *
-     * @return array{id: string}[]
-     *
-     * @throws \Exception if the current class is not a backed enum
+     * @return TModel
      */
-    public static function sushiArray(): array;
+    public function model(): Model;
 }
